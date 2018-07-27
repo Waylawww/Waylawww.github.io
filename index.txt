@@ -1,0 +1,10 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<h1>欢迎光临汪显阳的个人博客</h1>
+</body>
+</html>
