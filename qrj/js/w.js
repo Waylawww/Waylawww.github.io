@@ -123,7 +123,7 @@ function b(){
   
                 }  
                 var show = document.getElementById('show');  
-                show.appendChild('p');  
+                //show.appendChild('p');  
             }  
   
             initPoints();  
