@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>鬼故事</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #shares {
+            width: 40px;
+            position: fixed;
+            bottom: 10px;
+            right: 0;
+            list-style: none;
+            background: gray;
+        }
+
+        #shares a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #484848;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        #shares a:hover {
+            background: gold;
+        }
+
+        #shares a:last-child {
+            border: none;
+            display: none;
+        }
+    </style>
+    <script>
+        $(function () {
+            var link=GetRequest()["link"];
+            var title=GetRequest()["title"];
+            $("#title").text(title);
+            iniPage(link);
+        });
+
+        function iniPage(link) {
+            $.ajax({
+                type: 'post',
+                url: 'https://route.showapi.com/955-2',
+                dataType: 'json',
+                data: {
+                    "showapi_timestamp": formatterDateTime(),
+                    "showapi_appid": '94764',
+                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',
+                    "id":link,
+                    "page":""
+                },
+                error: function(XmlHttpRequest, textStatus, errorThrown) {
+                    alert("操作失败!");
+                },
+                success: function(result) {
+                    var res=result.showapi_res_body.text;
+                    $("#story").text(res.replace("更多精彩故事，请关注微信公众号：鬼爷讲故事","更多精彩故事，请加入我们基地。"));
+                }
+            });
+        }
+
+        //获取参数
+        function GetRequest() {
+            var url = location.search;
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+        function formatterDateTime() {
+            var date = new Date()
+            var month = date.getMonth() + 1
+            var datetime = date.getFullYear()
+                + ""// "年"
+                + (month >= 10 ? month : "0" + month)
+                + ""// "月"
+                + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+                + ""
+                + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+                + ""
+                + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+                + ""
+                + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+            return datetime;
+        }
+
+    </script>
+</head>
+<body class="container">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">鬼故事_丐帮提供   </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">鬼故事_丐帮提供 </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="gsList.html">HOME</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <h1 id="title">环卫工阿姨的遭遇</h1>
+            <p id="story">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim
+            </p>
+        </div>
+    </div>
+</div>
+<footer style="text-align: center;">想获取更多鬼故事,请加入丐帮基地：450342630 （QQ群号）</footer>
+<div id="shares">
+    <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
+</div>
+<script>
+    window.addEventListener("load", function () {
+        var btn = document.getElementById("gotop");
+        btn.addEventListener("mouseover", moveIn, false);
+        btn.addEventListener("mouseout", moveOut, false);
+
+        function moveIn() {
+            btn.style.color = "#fff"; //修改的是内联样式，具有最高的优先级;
+            btn.style.backgroundColor = "gold";
+        }
+
+        function moveOut() {
+            btn.style.color = "#fff";
+            btn.style.backgroundColor = "gray";
+        }
+
+        function goTop(acceleration, time) { //修改参数可调整返回顶部的速度
+            acceleration = acceleration || 0.1;
+            time = time || 10;
+            var speed = 1 + acceleration;
+
+            function getScrollTop() { //取得滚动条的竖直距离
+                return document.documentElement.scrollTop || document.body.scrollTop;
+            }
+
+            function setScrollTop(value) { //设置滚动条的竖直距离,实现效果的关键就是在很短的间隔时间内不断地修改滚动条的竖直距离,以实现滚动效果
+                document.documentElement.scrollTop = value;
+                document.body.scrollTop = value;
+            }
+
+            window.onscroll = function () {
+                var scrollTop = getScrollTop();
+                if (scrollTop > 100) { //判断滚动条距离窗口顶部多远时显示出来，这里是100px
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            };
+            btn.onclick = function () {
+                var timer = setInterval(function () {
+                    setScrollTop(Math.floor(getScrollTop() / speed)); //这行代码是关键，取得滚动条竖直距离，除以speed后再给滚动条设置竖直距离
+                    if (getScrollTop() == 0)
+                        clearInterval(timer);
+                }, time);
+            };
+        }
+
+        goTop(0.1, 8);
+    }, false);
+</script>
+</body>
+</html>
