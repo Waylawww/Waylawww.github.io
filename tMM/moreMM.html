@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MM列表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            var MMList = GetRequest()["MMList"];
+            var objList = MMList.split(",");
+            iniMMList(objList);
+        });
+
+        function iniMMList(MMList) {
+            var mmRoom = $(".container");
+            $.each(MMList, function (index, url) {
+                if (!!url && url.length > 0) {
+                    var row = $("<div class='row'>" +
+                        " <div class='col-xs-12 col-sm-12 col-md-12'>" +
+                        " <a href='#' class='thumbnail'>" +
+                        " <img src='" + url + "'" +
+                        " alt=''>\n" +
+                        " </a>" +
+                        " </div>" +
+                        " </div>");
+                    mmRoom.append(row);
+                }
+            });
+        }
+
+        //获取参数
+        function GetRequest() {
+            var url = location.search;
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+    </script>
+</head>
+<body style="overflow-x: hidden;">
+<div class="container">
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <footer style="text-align: center;">想获取更多MM,请加入丐帮基地：450342630 （QQ群号）</footer>
+    </div>
+</div>
+</body>
+</html>
