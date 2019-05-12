@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>淘视频</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .videodom {
+            display: block;
+            margin: auto;
+            width: 90%;
+        }
+
+        #shares {
+            width: 40px;
+            position: fixed;
+            bottom: 10px;
+            right: 0;
+            list-style: none;
+            background: gray;
+        }
+
+        #shares a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #484848;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        #shares a:hover {
+            background: gold;
+        }
+
+        #shares a:last-child {
+            border: none;
+            display: none;
+        }
+    </style>
+    <script>
+
+        $(function () {
+            iniHeadtype();
+        });
+
+        //初始化导航栏
+        function iniHeadtype() {
+            showLoading("正在加载请稍后...");
+            $.ajax({
+                type: 'post',
+                url: 'https://api.apiopen.top/videoHomeTab',
+                dataType: 'json',
+                data: {},
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("错误，请联系管理员!");
+                    hideLoading();
+                },
+                success: function (result) {
+                    $(".navbar-nav li").remove();
+                    var allTypeList = result.result;
+                    var ul = $(".navbar-nav");
+                    var j = 0;
+                    $.each(allTypeList, function (index, objType) {
+
+                        //未解决跨域问题
+                        if (objType.name != "发现" && objType.name != "推荐" && objType.name != "日报" && objType.name != "社区") {
+                            var active = j == 0 ? "class='active'" : "";
+                            var li = $("<li " + active + " onclick='changeType(" + JSON.stringify(objType) + ",this);'><a href='#'>" + objType.name + "</a></li>");
+                            ul.append(li);
+
+                            //初始化第一个
+                            if (j == 0) {
+                                iniTypeMoveList(objType);
+                            }
+                            j++;
+                        }
+                    });
+                    hideLoading();
+                }
+            });
+        }
+
+        function changeType(type, obj) {
+            $(obj).siblings().removeClass("active");
+            $(obj).addClass("active");
+            iniTypeMoveList(type);
+        }
+
+        function iniTypeMoveList(movieType) {
+            var qType = movieType.id;
+            var url = "https://api.apiopen.top/videoCategoryDetails?id=" + qType;
+            showLoading("正在加载请稍后...");
+            $.ajax({
+                type: 'post',
+                url: url,
+                dataType: 'json',
+                data: {},
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("错误，请联系管理员!");
+                    hideLoading();
+                },
+                success: function (result) {
+                    var contentlist = result.result;
+                    var content_dom = $(".MMList");
+                    $(".row").remove();
+                    $.each(contentlist, function (index, obj) {
+                        if (obj.type == "followCard") {
+                            var data = obj.data;
+                            var head = data.header;
+                            var content = data.content;
+                            if (content.type == "video") {
+                                var Vdata = content.data;
+                                var title = Vdata.title;
+                                var description = Vdata.description;
+                                var tags = Vdata.tags;
+                                var cover = Vdata.cover;
+                                var picUrl = cover.detail;
+                                var playUrl = Vdata.playUrl;
+                                var palys = Vdata.playInfo;
+                                var palysDoms = "";
+                                for (var i = 0; i < palys.length; i++) {
+                                    var bb = " <a onclick='seeMoreMM(" + JSON.stringify(palys[i]) + ");' href='#' class='btn btn-default' role='button'>"
+                                        + palys[i].name + " </a>";
+                                    palysDoms += bb;
+                                }
+
+                                var video_dom = "<video class='videodom' src='" + playUrl + " '  controls='controls'>" +
+                                    "Your browser does not support the video tag." +
+                                    "</video>";
+                                var row = $("<div class='row'></div>");
+                                var col = $("<div class='col-xs-12 col-sm-12 col-md-12'></div>");
+                                var thumbnail = $(" <div class='thumbnail'>"
+                                    + video_dom
+                                    + "<div class='caption'> "
+                                    + " <h3>名称：" + title + "</h3>"
+                                    + " <p>简介：" + description + "</p>"
+                                    + palysDoms
+                                    + " </p> </div> </div>");
+                                col.append(thumbnail);
+                                row.append(col);
+                                content_dom.append(row);
+                            }
+                        }
+                    });
+                    hideLoading();
+                }
+            });
+        }
+
+        function formatterDateTime() {
+            var date = new Date()
+            var month = date.getMonth() + 1
+            var datetime = date.getFullYear()
+                + ""// "年"
+                + (month >= 10 ? month : "0" + month)
+                + ""// "月"
+                + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+                + ""
+                + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+                + ""
+                + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+                + ""
+                + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+            return datetime;
+        }
+
+        function seeMoreMM(obj) {
+            if (!!obj && !!obj.url) {
+                window.open(obj.url);
+            } else {
+                alert("暂无数据！");
+            }
+        }
+    </script>
+</head>
+<body class="container">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">淘视频_丐帮提供   </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">淘视频_丐帮提供 </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">欧美 </a></li>
+                <li><a href="#">欧美</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="MMList">
+</div>
+<footer style="text-align: center;">想获取更多淘视频,请加入丐帮基地：450342630 （QQ群号）</footer>
+<div id="shares">
+    <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
+</div>
+
+<div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+    　　<div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+    　　　　<div class="progress progress-striped active" style="margin-bottom: 0;">
+    　　　　　　<div class="progress-bar" style="width: 100%;"></div>
+    　　　　</div>
+    　　　　<h5 id="loadText">loading...</h5>
+    　　</div>
+</div>
+<script type="text/javascript">
+    var loadingTime= 50;//默认遮罩时间
+    showLoading = function (loadText) {
+        if(!loadText){
+            $("#loadText").html(loadText)
+        }
+        $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+    }
+    hideLoading = function () {
+        $('#loadingModal').modal('hide');
+    }
+</script>
+<script>
+    window.addEventListener("load", function () {
+        var btn = document.getElementById("gotop");
+        btn.addEventListener("mouseover", moveIn, false);
+        btn.addEventListener("mouseout", moveOut, false);
+
+        function moveIn() {
+            btn.style.color = "#fff"; //修改的是内联样式，具有最高的优先级;
+            btn.style.backgroundColor = "gold";
+        }
+
+        function moveOut() {
+            btn.style.color = "#fff";
+            btn.style.backgroundColor = "gray";
+        }
+
+        function goTop(acceleration, time) { //修改参数可调整返回顶部的速度
+            acceleration = acceleration || 0.1;
+            time = time || 10;
+            var speed = 1 + acceleration;
+
+            function getScrollTop() { //取得滚动条的竖直距离
+                return document.documentElement.scrollTop || document.body.scrollTop;
+            }
+
+            function setScrollTop(value) { //设置滚动条的竖直距离,实现效果的关键就是在很短的间隔时间内不断地修改滚动条的竖直距离,以实现滚动效果
+                document.documentElement.scrollTop = value;
+                document.body.scrollTop = value;
+            }
+
+            window.onscroll = function () {
+                var scrollTop = getScrollTop();
+                if (scrollTop > 100) { //判断滚动条距离窗口顶部多远时显示出来，这里是100px
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            };
+            btn.onclick = function () {
+                var timer = setInterval(function () {
+                    setScrollTop(Math.floor(getScrollTop() / speed)); //这行代码是关键，取得滚动条竖直距离，除以speed后再给滚动条设置竖直距离
+                    if (getScrollTop() == 0)
+                        clearInterval(timer);
+                }, time);
+            };
+        }
+
+        goTop(0.1, 8);
+    }, false);
+</script>
+</body>
+</html>
