@@ -41,8 +41,8 @@
     <script>
         $(function () {
             var link=GetRequest()["link"];
-            var title=GetRequest()["title"];
-            $("#title").text(title);
+            var title=decodeURIComponent(GetRequest()["title"]);
+            $("#title").text("<<"+title+">>");
             iniPage(link);
         });
 

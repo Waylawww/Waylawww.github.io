@@ -127,7 +127,7 @@
 
         function read(obj) {
             var link = $(obj).attr("id");
-            var title = $(obj).parent(".col-xs-12").children("h2").text();
+            var title = $(obj).parent("p").parent(".col-xs-12").children("h2").text();
             var url = "gsRead.html?link=" + link + "&title=" + title;
             window.open(url);
         }

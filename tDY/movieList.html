@@ -125,13 +125,21 @@
                                 var playUrl = Vdata.playUrl;
                                 var palys = Vdata.playInfo;
                                 var palysDoms = "";
+                                var tagsDoms = "";
+                                //<span class="label label-primary">主要标签</span>
+
+                                for (var j = 0; j < tags.length; j++) {
+                                    var tag = "<span style=' margin-right: 4px;' class='label label-primary'>" + tags[j].name + "</span>";
+                                    tagsDoms += tag;
+                                }
+
                                 for (var i = 0; i < palys.length; i++) {
                                     var bb = " <a onclick='seeMoreMM(" + JSON.stringify(palys[i]) + ");' href='#' class='btn btn-default' role='button'>"
                                         + palys[i].name + " </a>";
                                     palysDoms += bb;
                                 }
 
-                                var video_dom = "<video class='videodom' src='" + playUrl + " '  controls='controls'>" +
+                                var video_dom = "<video poster='" + picUrl + "'  class='videodom' src='" + playUrl + " '  controls='controls'>" +
                                     "Your browser does not support the video tag." +
                                     "</video>";
                                 var row = $("<div class='row'></div>");
@@ -139,7 +147,8 @@
                                 var thumbnail = $(" <div class='thumbnail'>"
                                     + video_dom
                                     + "<div class='caption'> "
-                                    + " <h3>名称：" + title + "</h3>"
+                                    + " <h4>名称：" + title + "</h4>"
+                                    + " <p>标签：" + tagsDoms + "</p>"
                                     + " <p>简介：" + description + "</p>"
                                     + palysDoms
                                     + " </p> </div> </div>");
@@ -216,17 +225,22 @@
 </div>
 
 <div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
-    　　<div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
-    　　　　<div class="progress progress-striped active" style="margin-bottom: 0;">
-    　　　　　　<div class="progress-bar" style="width: 100%;"></div>
-    　　　　</div>
-    　　　　<h5 id="loadText">loading...</h5>
-    　　</div>
+    　　
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        　　　　
+        <div class="progress progress-striped active" style="margin-bottom: 0;">
+            　　　　　　
+            <div class="progress-bar" style="width: 100%;"></div>
+            　　　　
+        </div>
+        　　　　<h5 id="loadText">loading...</h5>
+        　　
+    </div>
 </div>
 <script type="text/javascript">
-    var loadingTime= 50;//默认遮罩时间
+    var loadingTime = 50;//默认遮罩时间
     showLoading = function (loadText) {
-        if(!loadText){
+        if (!loadText) {
             $("#loadText").html(loadText)
         }
         $('#loadingModal').modal({backdrop: 'static', keyboard: false});
