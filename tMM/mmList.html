@@ -46,18 +46,20 @@
 
         //初始化导航栏
         function iniHeadtype() {
+            showLoading("正在加载请稍后...");
             $.ajax({
                 type: 'post',
                 url: 'https://route.showapi.com/126-1',
                 dataType: 'json',
                 data: {
                     "showapi_timestamp": formatterDateTime(),
-                    "showapi_appid": '94764', //这里需要改成自己的appid
-                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',  //这里需要改成自己的应用的密钥secret
+                    "showapi_appid": '94764',
+                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',
 
                 },
                 error: function (XmlHttpRequest, textStatus, errorThrown) {
                     alert("错误，请联系管理员!");
+                    hideLoading();
                 },
                 success: function (result) {
                     $(".navbar-nav li").remove();
@@ -74,6 +76,8 @@
                             iniTypeMMList(objType);
                         }
                     });
+
+                    hideLoading();
                 }
             });
         }
@@ -85,6 +89,7 @@
         }
 
         function iniTypeMMList(mmType) {
+            showLoading("正在加载请稍后...");
             $.ajax({
                 type: 'post',
                 url: 'https://route.showapi.com/126-2',
@@ -100,6 +105,7 @@
 
                 error: function (XmlHttpRequest, textStatus, errorThrown) {
                     alert("错误，请联系管理员!");
+                    hideLoading();
                 },
                 success: function (result) {
                     var obj = result.showapi_res_body;
@@ -127,6 +133,8 @@
                         row.append(col);
                         content.append(row);
                     });
+
+                    hideLoading();
                 }
             });
         }
@@ -193,6 +201,28 @@
 <div id="shares">
     <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
 </div>
+<div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        　　　　
+        <div class="progress progress-striped active" style="margin-bottom: 0;">　　
+            <div class="progress-bar" style="width: 100%;"></div>
+            　　　　
+        </div>
+        　　　　<h5 id="loadText">loading...</h5>
+    </div>
+</div>
+<script type="text/javascript">
+    var loadingTime = 50;//默认遮罩时间
+    showLoading = function (loadText) {
+        if (!!loadText) {
+            $("#loadText").html(loadText)
+        }
+        $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+    }
+    hideLoading = function () {
+        $('#loadingModal').modal('hide');
+    }
+</script>
 <script>
     window.addEventListener("load", function () {
         var btn = document.getElementById("gotop");

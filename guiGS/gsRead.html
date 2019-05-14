@@ -40,13 +40,14 @@
     </style>
     <script>
         $(function () {
-            var link=GetRequest()["link"];
-            var title=decodeURIComponent(GetRequest()["title"]);
-            $("#title").text("<<"+title+">>");
+            var link = GetRequest()["link"];
+            var title = decodeURIComponent(GetRequest()["title"]);
+            $("#title").text("<<" + title + ">>");
             iniPage(link);
         });
 
         function iniPage(link) {
+            showLoading("正在加载请稍后...");
             $.ajax({
                 type: 'post',
                 url: 'https://route.showapi.com/955-2',
@@ -55,15 +56,20 @@
                     "showapi_timestamp": formatterDateTime(),
                     "showapi_appid": '94764',
                     "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',
-                    "id":link,
-                    "page":""
+                    "id": link,
+                    "page": ""
                 },
-                error: function(XmlHttpRequest, textStatus, errorThrown) {
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
                     alert("操作失败!");
+                    hideLoading();
                 },
-                success: function(result) {
-                    var res=result.showapi_res_body.text;
-                    $("#story").text(res.replace("更多精彩故事，请关注微信公众号：鬼爷讲故事","更多精彩故事，请加入我们基地。"));
+                success: function (result) {
+                    var res = result.showapi_res_body.text;
+                    var texs = res.replace("更多精彩故事，请关注微信公众号：鬼爷讲故事", "。更多精彩故事，请加入我们基地。");
+                    $("#story").text(reLineText(texs));
+                    $("#story").css("textIndent", "2em");
+                    $("#story").css("white-space", "pre");
+                    hideLoading();
                 }
             });
         }
@@ -81,6 +87,13 @@
             }
             return theRequest;
         }
+
+        function reLineText(text) {
+            var textArr = text.split('。');
+            var res = textArr.join('  。\n');
+            return res;
+        }
+
         function formatterDateTime() {
             var date = new Date()
             var month = date.getMonth() + 1
@@ -141,6 +154,29 @@
 <div id="shares">
     <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
 </div>
+
+<div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        　　　　
+        <div class="progress progress-striped active" style="margin-bottom: 0;">　　
+            <div class="progress-bar" style="width: 100%;"></div>
+            　　　　
+        </div>
+        　　　　<h5 id="loadText">loading...</h5>
+    </div>
+</div>
+<script type="text/javascript">
+    var loadingTime = 50;//默认遮罩时间
+    showLoading = function (loadText) {
+        if (!!loadText) {
+            $("#loadText").html(loadText)
+        }
+        $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+    }
+    hideLoading = function () {
+        $('#loadingModal').modal('hide');
+    }
+</script>
 <script>
     window.addEventListener("load", function () {
         var btn = document.getElementById("gotop");

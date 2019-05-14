@@ -38,9 +38,11 @@
     </style>
     <script>
         $(function () {
+            showLoading("正在加载请稍后...");
             var MMList = GetRequest()["MMList"];
             var objList = MMList.split(",");
             iniMMList(objList);
+            hideLoading();
         });
 
         function iniMMList(MMList) {
@@ -86,6 +88,28 @@
 <div id="shares">
     <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
 </div>
+<div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        　　　　
+        <div class="progress progress-striped active" style="margin-bottom: 0;">　　
+            <div class="progress-bar" style="width: 100%;"></div>
+            　　　　
+        </div>
+        　　　　<h5 id="loadText">loading...</h5>
+    </div>
+</div>
+<script type="text/javascript">
+    var loadingTime = 50;//默认遮罩时间
+    showLoading = function (loadText) {
+        if (!!loadText) {
+            $("#loadText").html(loadText)
+        }
+        $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+    }
+    hideLoading = function () {
+        $('#loadingModal').modal('hide');
+    }
+</script>
 <script>
     window.addEventListener("load", function () {
         var btn = document.getElementById("gotop");
