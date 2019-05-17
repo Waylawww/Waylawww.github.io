@@ -37,9 +37,10 @@
             border: none;
             display: none;
         }
-        #story{
-            word-break: break-word;
-            overflow-x: hidden;
+
+        #story {
+            /*word-break: break-word;*/
+            /*overflow-x: hidden;*/
         }
     </style>
     <script>
@@ -70,9 +71,11 @@
                 success: function (result) {
                     var res = result.showapi_res_body.text;
                     var texs = res.replace("更多精彩故事，请关注微信公众号：鬼爷讲故事", "。更多精彩故事，请加入我们基地。");
-                    $("#story").text(reLineText(texs));
+                    //  $("#story").text(reLineText(texs));
+                    $("#story").empty();
+                    $("#story").append(reLineText(texs));
                     $("#story").css("textIndent", "2em");
-                    $("#story").css("white-space", "pre");
+                    // $("#story").css("white-space", "pre");
                     hideLoading();
                 }
             });
@@ -94,7 +97,7 @@
 
         function reLineText(text) {
             var textArr = text.split('。');
-            var res = textArr.join('  。\n');
+            var res = textArr.join('  。</br></br>');
             return res;
         }
 
