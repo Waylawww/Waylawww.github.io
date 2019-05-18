@@ -85,10 +85,7 @@ function b(){
             	/*c.moveTo(x2d,y2d);  
                 c.lineTo(x2d+scale,y2d);*/
                 c.stroke();
-               
-                
-                
-                
+
             }  
   
             var canvas = document.getElementById(c_id);  

@@ -2,11 +2,32 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>丐帮基地</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
     <link rel="icon" type="image/png" href="http://benjaminwhx.com/images/avator.jpg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
     <style>
         html {
             height: 100%;
@@ -23,44 +44,294 @@
         }
 
         a {
-            color: #ebf7f4;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:focus, a:hover {
+            text-decoration: none;
+            color: #8DFB1A;
+        }
+
+        .site_item {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.72);
+            padding: 10px;
+            border: aliceblue solid 1px;
+            border-radius: 8px;
+        }
+
+        .site_item :hover {
+            color: #8DFB1A;
         }
 
         .body--ready {
-            background: -webkit-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
-            background: -moz-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
-            background: -o-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
-            background: -ms-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
-            background: linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
-        }
-
-        .text {
-            position: fixed;
-            bottom: 100px;
-            text-align: center;
-            width: 100%;
+            background-color: rgb(114, 216, 165);
+            /*background: -webkit-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);*/
+            /*background: -moz-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);*/
+            /*background: -o-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);*/
+            /*background: -ms-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);*/
+            /*background: linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);*/
         }
 
         .canvas {
             margin: 0 auto;
             display: block;
         }
+
+        #canvas_room {
+            width: 100%;
+            height: 240px;
+        }
+
+        .container {
+            max-width: none;
+        }
     </style>
-    <meta name="chromesniffer" id="chromesniffer_meta" content="{&quot;Java&quot;:-1}">
-    <script type="text/javascript" src="chrome-extension://fhhdlnnepfjhlhilgmeepgkhjmhhhjkh/js/detector.js"></script>
+    <style type="text/css">
+        #world {
+            position: absolute;
+            /*z-index: -1;*/
+            opacity: 0.7;
+            left: 0px;
+            top: 0px;
+            /*bottom: 0;*/
+            margin: 0px;
+            background: #00000000;
+            border: thin solid #00000000;
+            pointer-events: none;
+        }
+
+    </style>
+    <!--<meta name="chromesniffer" id="chromesniffer_meta" content="{&quot;Java&quot;:-1}">-->
 </head>
 
 <body class="body--ready" data-pinterest-extension-installed="cr1.39.1">
-<canvas class="canvas" width="1266" height="120"></canvas>
-<p class="text">
-    <a href="ck_slide/photo.html" target="_blank">毕业相册</a>
-    <a href="qrj/w.html" target="_blank">情人节</a>
-    <a href="https://blog.csdn.net/qq_27532167" target="_blank">博文欣赏</a>
-    <a href="tMM/mmList.html" target="_blank">淘妹妹...</a>
-    <a href="tDY/movieList.html" target="_blank">淘视频...</a>
-    <a href="guiGS/gsList.html" target="_blank">鬼故事...</a>
-    <a href="#">群号：450342630</a>
-</p>
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+    //  L2Dwidget.init();
+</script>
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="index.html">Home</a></li>
+                <!--添加更多菜单-->
+            </ul>
+        </nav>
+        <h3 class="text-muted">丐帮基地</h3>
+    </div>
+
+    <div class="row">
+        <div id="canvas_room" class="col-xs-12 col-sm-12 col-md-12">
+            <canvas class="canvas" width="100%" height="120"></canvas>
+        </div>
+    </div>
+
+    <div class="jumbotron" style="position: relative;height: 400px;">
+        <canvas id='world'></canvas>
+        <p>
+            <a class="btn btn-lg btn-success" href="#" role="button">群号：450342630</a>
+        </p>
+    </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <a class="site_item" href="ck_slide/photo.html" target="_blank">
+                <h4>毕业相册</h4>
+                <p>这里是大家的毕业相册...</p>
+            </a>
+            <a class="site_item" href="https://blog.csdn.net/qq_27532167" target="_blank">
+                <h4>博文欣赏</h4>
+                <p>这里是一些博客文章...</p>
+            </a>
+            <a class="site_item" href="qrj/w.html" target="_blank">
+                <h4>情人节</h4>
+                <p>这是一个情人节网站....</p>
+            </a>
+        </div>
+
+        <div class="col-lg-6">
+            <a class="site_item" href="tDY/movieList.html" target="_blank">
+                <h4>淘视频</h4>
+                <p>这是一个视频类型网站...</p>
+            </a>
+            <a class="site_item" href="tMM/mmList.html" target="_blank">
+                <h4>淘妹妹</h4>
+                <p>这是一个图片类型网站....</p>
+            </a>
+            <a class="site_item" href="guiGS/gsList.html" target="_blank">
+                <h4>鬼故事</h4>
+                <p>这是一个故事类型网站...</p>
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© <span id="year">2019</span> Company, Wxy. 欢迎光临汪帮主的个人博客</p>
+    </footer>
+
+</div> <!-- /container -->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!--<script src="./Narrow Jumbotron Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
+<script>
+    // One of my first <canvas> experiments, woop! :D
+    var SCREEN_WIDTH = window.innerWidth;
+    var SCREEN_HEIGHT = window.innerHeight;
+
+    var RADIUS = 70;
+
+    var RADIUS_SCALE = 1;
+    var RADIUS_SCALE_MIN = 1;
+    var RADIUS_SCALE_MAX = 1.5;
+
+    var QUANTITY = 25;
+
+    var canvas;
+    var context;
+    var particles;
+
+    var mouseX = SCREEN_WIDTH * 0.5;
+    var mouseY = SCREEN_HEIGHT * 0.5;
+    var mouseIsDown = false;
+
+    function init() {
+
+        canvas = document.getElementById('world');
+
+        if (canvas && canvas.getContext) {
+            context = canvas.getContext('2d');
+
+            // Register event listeners
+            window.addEventListener('mousemove', documentMouseMoveHandler, false);
+            window.addEventListener('mousedown', documentMouseDownHandler, false);
+            window.addEventListener('mouseup', documentMouseUpHandler, false);
+            document.addEventListener('touchstart', documentTouchStartHandler, false);
+            document.addEventListener('touchmove', documentTouchMoveHandler, false);
+            window.addEventListener('resize', windowResizeHandler, false);
+
+            createParticles();
+
+            windowResizeHandler();
+
+            setInterval(loop, 1000 / 60);
+        }
+    }
+
+    function createParticles() {
+        particles = [];
+
+        for (var i = 0; i < QUANTITY; i++) {
+            var particle = {
+                size: 1,
+                position: {x: mouseX, y: mouseY},
+                offset: {x: 0, y: 0},
+                shift: {x: mouseX, y: mouseY},
+                speed: 0.01 + Math.random() * 0.04,
+                targetSize: 1,
+                fillColor: '#' + (Math.random() * 0x904040 + 0xaaaaaa | 0).toString(16),
+                orbit: RADIUS * .5 + (RADIUS * .5 * Math.random())
+            };
+
+            particles.push(particle);
+        }
+    }
+
+    function documentMouseMoveHandler(event) {
+        mouseX = event.clientX - (window.innerWidth - SCREEN_WIDTH) * .5;
+        mouseY = event.clientY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+    }
+
+    function documentMouseDownHandler(event) {
+        mouseIsDown = true;
+    }
+
+    function documentMouseUpHandler(event) {
+        mouseIsDown = false;
+    }
+
+    function documentTouchStartHandler(event) {
+        if (event.touches.length == 1) {
+            event.preventDefault();
+
+            mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;
+            mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+        }
+    }
+
+    function documentTouchMoveHandler(event) {
+        if (event.touches.length == 1) {
+            event.preventDefault();
+
+            mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;
+            mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+        }
+    }
+
+    function windowResizeHandler() {
+        SCREEN_WIDTH = $(".jumbotron").outerWidth() || window.innerWidth;
+        SCREEN_HEIGHT = $(".jumbotron").outerHeight() || window.innerHeight;
+
+        canvas.width = SCREEN_WIDTH;
+        canvas.height = SCREEN_HEIGHT;
+    }
+
+    function loop() {
+
+        if (mouseIsDown) {
+            RADIUS_SCALE += (RADIUS_SCALE_MAX - RADIUS_SCALE) * (0.02);
+        } else {
+            RADIUS_SCALE -= (RADIUS_SCALE - RADIUS_SCALE_MIN) * (0.02);
+        }
+
+        RADIUS_SCALE = Math.min(RADIUS_SCALE, RADIUS_SCALE_MAX);
+
+        context.fillStyle = 'rgba(0,0,0,0.05)';
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+
+        for (i = 0, len = particles.length; i < len; i++) {
+            var particle = particles[i];
+
+            var lp = {x: particle.position.x, y: particle.position.y};
+
+            // Rotation
+            particle.offset.x += particle.speed;
+            particle.offset.y += particle.speed;
+
+            // Follow mouse with some lag
+            particle.shift.x += (mouseX - particle.shift.x) * (particle.speed);
+            particle.shift.y += (mouseY - particle.shift.y) * (particle.speed);
+
+            // Apply position
+            particle.position.x = particle.shift.x + Math.cos(i + particle.offset.x) * (particle.orbit * RADIUS_SCALE);
+            particle.position.y = particle.shift.y + Math.sin(i + particle.offset.y) * (particle.orbit * RADIUS_SCALE);
+
+            // Limit to screen bounds
+            particle.position.x = Math.max(Math.min(particle.position.x, SCREEN_WIDTH), 0);
+            particle.position.y = Math.max(Math.min(particle.position.y, SCREEN_HEIGHT), 0);
+
+            particle.size += (particle.targetSize - particle.size) * 0.01;
+
+            if (Math.round(particle.size) == Math.round(particle.targetSize)) {
+                particle.targetSize = 1 + Math.random() * 2;
+            }
+
+            context.beginPath();
+            context.fillStyle = particle.fillColor;
+            context.strokeStyle = particle.fillColor;
+            context.lineWidth = particle.size;
+            context.moveTo(lp.x, lp.y);
+            context.lineTo(particle.position.x, particle.position.y);
+            context.stroke();
+            context.arc(particle.position.x, particle.position.y, particle.size / 2, 0, Math.PI * 2, true);
+            context.fill();
+        }
+    }
+
+    init();
+    //window.onload = init;
+</script>
 <script>
     var S = {
         init: function () {
@@ -100,8 +371,9 @@
                 requestFrame.call(window, this.loop.bind(this));
             },
             adjustCanvas: function () {
-                canvas.width = window.innerWidth - 100;
-                canvas.height = window.innerHeight - 30;
+                canvas.width = $("#canvas_room").width() - 0;
+                canvas.height = $("#canvas_room").height() - 0;
+                S.Shape.render();
             },
             clearFrame: function () {
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -531,158 +803,13 @@
         };
     }());
     S.init();
+
+    //底部
+    var strYear = new Date().getFullYear();
+    $("#year").text(strYear);
 </script>
 
-<div></div>
 </body>
-<style type="text/css">#yddContainer {
-    display: block;
-    font-family: Microsoft YaHei;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    top: -4px;
-    left: -4px;
-    font-size: 12px;
-    border: 1px solid
-}
-
-#yddTop {
-    display: block;
-    height: 22px
-}
-
-#yddTopBorderlr {
-    display: block;
-    position: static;
-    height: 17px;
-    padding: 2px 28px;
-    line-height: 17px;
-    font-size: 12px;
-    color: #5079bb;
-    font-weight: bold;
-    border-style: none solid;
-    border-width: 1px
-}
-
-#yddTopBorderlr .ydd-sp {
-    position: absolute;
-    top: 2px;
-    height: 0;
-    overflow: hidden
-}
-
-.ydd-icon {
-    left: 5px;
-    width: 17px;
-    padding: 0px 0px 0px 0px;
-    padding-top: 17px;
-    background-position: -16px -44px
-}
-
-.ydd-close {
-    right: 5px;
-    width: 16px;
-    padding-top: 16px;
-    background-position: left -44px
-}
-
-#yddKeyTitle {
-    float: left;
-    text-decoration: none
-}
-
-#yddMiddle {
-    display: block;
-    margin-bottom: 10px
-}
-
-.ydd-tabs {
-    display: block;
-    margin: 5px 0;
-    padding: 0 5px;
-    height: 18px;
-    border-bottom: 1px solid
-}
-
-.ydd-tab {
-    display: block;
-    float: left;
-    height: 18px;
-    margin: 0 5px -1px 0;
-    padding: 0 4px;
-    line-height: 18px;
-    border: 1px solid;
-    border-bottom: none
-}
-
-.ydd-trans-container {
-    display: block;
-    line-height: 160%
-}
-
-.ydd-trans-container a {
-    text-decoration: none;
-}
-
-#yddBottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 22px;
-    line-height: 22px;
-    overflow: hidden;
-    background-position: left -22px
-}
-
-.ydd-padding010 {
-    padding: 0 10px
-}
-
-#yddWrapper {
-    color: #252525;
-    z-index: 10001;
-    background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
-}
-
-#yddContainer {
-    background: #fff;
-    border-color: #4b7598
-}
-
-#yddTopBorderlr {
-    border-color: #f0f8fc
-}
-
-#yddWrapper .ydd-sp {
-    background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
-}
-
-#yddWrapper a, #yddWrapper a:hover, #yddWrapper a:visited {
-    color: #50799b
-}
-
-#yddWrapper .ydd-tabs {
-    color: #959595
-}
-
-.ydd-tabs, .ydd-tab {
-    background: #fff;
-    border-color: #d5e7f3
-}
-
-#yddBottom {
-    color: #363636
-}
-
-#yddWrapper {
-    min-width: 250px;
-    max-width: 400px;
-}</style>
-<center style="color: #5079bb;">
-    <h1>欢迎光临汪显阳的个人博客</h1>
-</center>
 </html>
 
 

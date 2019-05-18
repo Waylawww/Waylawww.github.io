@@ -1,159 +1,152 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="./css/w.css" />
-	    <link rel="stylesheet" type="text/css" href="./css/0815.css" /> 
-		<meta charset="utf-8" />
-		<script type="text/javascript" src="./js/jquery.min.js"></script>
-		<script type="text/javascript" src="./js/w.js"></script>
-		<!--<script type="text/javascript" src="./js/0815.js"></script>-->
-		<title>节日快乐</title>
-		<style id="css" type="text/css">
-		/*实时样式区*/
-			.star{
-				position: absolute;
-				display: none;
-			}
-			.one{
-				display: block;
-			}
-			.one{
-				display: none;
-			}
-			.two{
-				display: block;
-			}
-			.two{
-				display: none;
-			}
-			.three{
-				display: block;
-			}
-			.three{
-				display: none;
-			}
-			.go{
-				display: block;
-			}
-			.go{
-				display: none;
-			}
-			.container1,.container2,.container3{
-				display: block;
-			
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			.items1,.items2,.items3{}
-			
-			.items1,.items2,.items3{
-				display: none;
-			}
-		</style>
-	</head>
-	<body style="background-color: black;">
-		<!--显示区 -->
-		<audio src="music/答案.mp3" id="player" 
-				controls="controls" autoplay="autoplay" style="display: none;">
-				您的浏览器不支持 audio 元素。
-			</audio>
-		<div class="star">
-			<canvas id="star"></canvas>
-		</div>
-		<div class="one">one</div>
-		<div class="two">two</div>
-		<div class="three">three</div>
-		<div class="go">GO!</div>
-		
-		<div class="container1">
-			<div class="items1">
-				<div class="item1">I</div>
-				<div class="item1"></div>
-				<div class="item1"></div>
-				<div class="item1"></div>
-				<div class="item1"></div>
-				<div class="item1"></div>
-			</div>
-		</div>
-		
-		<div class="container2">
-			<div class="items2">
-				<div class="item2">❤</div>
-				<div class="item2"></div>
-				<div class="item2"></div>
-				<div class="item2"></div>
-				<div class="item2"></div>
-				<div class="item2"></div>
-			</div>
-		</div>
-		
-		<div class="container3">
-			<div class="items3">
-				<div class="item3">YOU</div>
-				<div class="item3"></div>
-				<div class="item3"></div>
-				<div class="item3"></div>
-				<div class="item3"></div>
-				<div class="item3"></div>
-			</div>
-		</div>
-		
-		
-		
-		<div class="container4">
-		<div class="box">
-			<img src="./img/w.jpg" />
-			<img src="./img/w.jpg" />
-			<img src="./img/w.jpg" />
-			<img src="./img/w.jpg" />			
-		</div>
-		</div>
-		<div id="code" style="color: orange;font-size: 20px;position: absolute;left: 50px;top: 100px;">
-		<!--代码显示区 -->
-		one,two,three,GO!<br />
-		有个简单的问题,什么是爱情<br />
-		它是否是一种味道,还是引力<br />
-		从我初恋那天起,先是甜蜜<br />
-		然后紧接就会有 风雨<br />
-		爱就像,蓝天白云<br />
-		晴空万里,突然暴风雨<br />
-		无处躲避,总是让人,始料不及<br />
-		人就像,患重感冒<br />
-		打着喷嚏,发烧要休息<br />
-		冷热交替,欢喜犹豫,乐此不疲<br />
-		叫人头晕的问题,什么叫爱情<br />
-		它是那么的真实,又很可疑<br />
-		研究过许多誓言,海枯石烂<br />
-		发觉越想要解释 越乱<br />
-		爱就像,蓝天白云<br />
-		晴空万里,突然暴风雨<br />
-		无处躲避,总是让人,始料不及<br />
-		人就像,患重感冒<br />
-		打着喷嚏,发烧要休息<br />
-		冷热交替,欢喜犹豫,乐此不疲		
-		</div>
-	</body>
-	<script type="text/javascript">
-		/*js区*/
-		$(function(){
-			$("#css").typewriter();
-			$("#code").typewriter222();
-		    $("#star").star_3d({  
-		        window_width: '1560',  
-		        window_height: '700',  
-		        window_background: '#00113F',  
-		        star_count: '1000',  
-		        star_color: '#FBFFAF',  
-		        star_depth: '200'  
-		    });  
-		});
-	</script>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/w.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/0815.css"/>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/w.js"></script>
+    <!--<script type="text/javascript" src="./js/0815.js"></script>-->
+    <title>节日快乐</title>
+    <style id="css" type="text/css">
+        /*实时样式区*/
+        .star {
+            position: absolute;
+            display: none;
+        }
+
+        .one {
+            display: block;
+        }
+
+        .one {
+            display: none;
+        }
+
+        .two {
+            display: block;
+        }
+
+        .two {
+            display: none;
+        }
+
+        .three {
+            display: block;
+        }
+
+        .three {
+            display: none;
+        }
+
+        .go {
+            display: block;
+        }
+
+        .go {
+            display: none;
+        }
+
+        .container1, .container2, .container3 {
+            display: block;
+        }
+    </style>
+</head>
+<body style="background-color: black; overflow-x: hidden;">
+<!--显示区 -->
+<audio src="music/答案.mp3" id="player"
+       controls="controls" autoplay="autoplay" loop="loop" style="display: none;">
+    您的浏览器不支持 audio 元素。
+</audio>
+<div class="star">
+    <canvas id="star"></canvas>
+</div>
+<div class="one">one</div>
+<div class="two">two</div>
+<div class="three">three</div>
+<div class="go">GO!</div>
+
+<div class="container1">
+    <div class="items1">
+        <div class="item1">I</div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+        <div class="item1"></div>
+    </div>
+</div>
+
+<div class="container2">
+    <div class="items2">
+        <div class="item2">❤</div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+        <div class="item2"></div>
+    </div>
+</div>
+
+<div class="container3">
+    <div class="items3">
+        <div class="item3">YOU</div>
+        <div class="item3"></div>
+        <div class="item3"></div>
+        <div class="item3"></div>
+        <div class="item3"></div>
+        <div class="item3"></div>
+    </div>
+</div>
+
+<div class="container4">
+    <div class="box">
+        <img src="./img/w.jpg"/>
+        <img src="./img/w.jpg"/>
+        <img src="./img/w.jpg"/>
+        <img src="./img/w.jpg"/>
+    </div>
+</div>
+<div id="code" style="color: orange;font-size: 20px;position: absolute;left: 50px;top: 100px;">
+    <!--代码显示区 -->
+    one,two,three,GO!<br/>
+    有个简单的问题,什么是爱情<br/>
+    它是否是一种味道,还是引力<br/>
+    从我初恋那天起,先是甜蜜<br/>
+    然后紧接就会有 风雨<br/>
+    爱就像,蓝天白云<br/>
+    晴空万里,突然暴风雨<br/>
+    无处躲避,总是让人,始料不及<br/>
+    人就像,患重感冒<br/>
+    打着喷嚏,发烧要休息<br/>
+    冷热交替,欢喜犹豫,乐此不疲<br/>
+    叫人头晕的问题,什么叫爱情<br/>
+    它是那么的真实,又很可疑<br/>
+    研究过许多誓言,海枯石烂<br/>
+    发觉越想要解释 越乱<br/>
+    爱就像,蓝天白云<br/>
+    晴空万里,突然暴风雨<br/>
+    无处躲避,总是让人,始料不及<br/>
+    人就像,患重感冒<br/>
+    打着喷嚏,发烧要休息<br/>
+    冷热交替,欢喜犹豫,乐此不疲
+</div>
+</body>
+<script type="text/javascript">
+    /*js区*/
+    $(function () {
+        $("#css").typewriter();
+        $("#code").typewriter222();
+        var h = $(window).height();
+        var w = $(window).width();
+        $("#star").star_3d({
+            window_width: w,
+            window_height: h,
+            window_background: '#00113F',
+            star_count: '1000',
+            star_color: '#FBFFAF',
+            star_depth: '200'
+        });
+    });
+</script>
 </html>
