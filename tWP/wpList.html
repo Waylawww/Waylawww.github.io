@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>淘商品</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="http://benjaminwhx.com/images/avator.jpg">
+    <link rel="stylesheet" href="timeline.css">
+    <style>
+        #shares {
+            width: 40px;
+            position: fixed;
+            bottom: 10px;
+            right: 0;
+            list-style: none;
+            background: gray;
+        }
+
+        #shares a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #484848;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        #shares a:hover {
+            background: gold;
+        }
+
+        #shares a:last-child {
+            border: none;
+            display: none;
+        }
+
+        .form-group label {
+            color: #fff;
+        }
+
+        .thumbnail {
+            min-height: 510px;
+        }
+
+        .thumbnail > img {
+            height: 280px;
+        }
+
+        .modal-body {
+            max-height: 400px;
+            overflow: auto;
+        }
+    </style>
+    <script>
+        var allPages = 9999999;
+        var page = 1;//当前页数
+        $(function () {
+
+            getDpType(); //获取店铺
+
+            $(".btn-success").click(function () {
+
+                page = 1;
+                iniPage();
+                return false;
+            });
+            //底部
+            var strYear = new Date().getFullYear();
+            $("#year").text(strYear);
+        });
+
+        function getDpType() {
+            showLoading("正在加载请稍后...");
+            $.ajax({
+                type: 'post',
+                url: 'https://route.showapi.com/1615-3',
+                dataType: 'json',
+                data: {
+                    "showapi_timestamp": formatterDateTime(),
+                    "showapi_appid": '94764',
+                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',
+                },
+
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("操作失败!");
+                    hideLoading();
+                },
+                success: function (result) {
+                    var selects = $(".dpType");
+                    var showapi_res_body = result.showapi_res_body;
+                    var dpList = showapi_res_body.result;
+                    $.each(dpList, function (index, dp) {
+                        var option = $("<option value='" + dp.mallId + "'>" + dp.name + "</option>");
+                        selects.append(option);
+                    });
+                    hideLoading();
+                }
+            });
+
+        }
+
+        //查询商品
+        function querySP(wp_name, mallId) {
+            var rows = $(".row");
+            rows.empty();
+            showLoading("正在加载请稍后...");
+            $.ajax({
+                type: 'post',
+                url: 'https://route.showapi.com/1615-1',
+                dataType: 'json',
+                data: {
+                    "showapi_timestamp": formatterDateTime(),
+                    "showapi_appid": '94764',
+                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',
+                    "keyWords": wp_name,
+                    "page": page,
+                    "mallId": mallId
+                },
+
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("操作失败!");
+                    hideLoading();
+                },
+                success: function (result) {
+                    if (result.showapi_res_body.ret_code == -1) {
+                        alert("亲，搜索不到呀，请更换参数试试！")
+                    } else {
+                        if (!!result && !!result.showapi_res_body && !!result.showapi_res_body.shopList && result.showapi_res_body.shopList.length > 0) {
+                            var showapi_res_body = result.showapi_res_body;
+                            var shopList = showapi_res_body.shopList;
+                            //paixu
+                            shopList = shopList.sort(function (a, b) {
+                                var sortType = $(".dpSort").val();
+                                if (sortType == "up") {
+                                    return Number(a.shopPrice.replace("￥", "")) - Number(b.shopPrice.replace("￥", ""));
+                                } else {
+                                    return Number(b.shopPrice.replace("￥", "")) - Number(a.shopPrice.replace("￥", ""));
+                                }
+                            });
+                            $.each(shopList, function (index, obj) {
+                                // var row = $("<div class='row'></div>");
+                                var col = $("<div class='col-xs-12 col-sm-12 col-md-4'></div>");
+                                var thumbnail = $(" <div class='thumbnail'>"
+                                    + " <img src='" + obj.shopImg + " ' "
+                                    + " alt=''> <div class='caption'> "
+                                    + " <h3>价格：" + obj.shopPrice + "</h3>"
+                                    + " <p>所在店铺：" + obj.shopType + "</p>"
+                                    + " <p>商品信息：" + obj.shopTitle + "</p>"
+                                    + " <p style='position: absolute;bottom: 20px;'> "
+                                    + " <span  onclick='seeMoreMM(" + JSON.stringify(obj) + ");'  class='btn btn-primary' role='button'>"
+                                    + "  历史价格..."
+                                    + "  </span>"
+                                    + "  <a href='" + obj.shopAddr + "' class='btn btn-default' role='button'>"
+                                    + "  查看店铺~~ </a> </p> </div> </div>");
+                                col.append(thumbnail);
+                                //  row.append(col);
+                                rows.append(col);
+                            });
+                        } else {
+                            rows.append("<div class='col-xs-12 col-sm-12 col-md-12'>该店铺暂无该商品，请重新选择店铺！</div>");
+                        }
+                    }
+                    $("#page").text("第" + page + "页");
+                    hideLoading();
+                }
+            });
+
+        }
+
+        function formatterDateTime() {
+            var date = new Date()
+            var month = date.getMonth() + 1
+            var datetime = date.getFullYear()
+                + ""// "年"
+                + (month >= 10 ? month : "0" + month)
+                + ""// "月"
+                + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+                + ""
+                + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+                + ""
+                + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+                + ""
+                + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+            return datetime;
+        }
+
+        function seeMoreMM(obj) {
+            showLoading("正在加载请稍后...");
+            var content = $(".modal-body");
+            content.empty();
+            $.ajax({
+                type: 'post',
+                url: 'https://route.showapi.com/1615-2',
+                dataType: 'json',
+                data: {
+                    "showapi_timestamp": formatterDateTime(),
+                    "showapi_appid": '94764', //
+                    "showapi_sign": '2c83ec02e5794f178d1ee7a3fb7856ec',  //
+                    "shopAddr": obj.shopAddr
+
+                },
+
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("操作失败!");
+                    hideLoading();
+                },
+                success: function (result) {
+                    if (!!result && !!result.showapi_res_body && !!result.showapi_res_body.shopList > 0) {
+                        var shopList = result.showapi_res_body.shopList;
+                        var sObj = shopList[0];
+                        var mallName = sObj.mallName; //商城名称
+                        var sellRange = sObj.sellRange; //范围
+                        var sellBeginTime = sObj.sellBeginTime; //上架时间
+                        var sellLately = sObj.sellLately; //最近浮动价格
+                        var sellCurrent = sObj.sellCurrent; //当前价格
+                        var timeAndPriceList = sObj.timeAndPriceList;
+                        var h2_sellCurrent = $("<h2>当前价格:" + sellCurrent + "</h2>");
+                        var h2_sellLately = $("<h2>最近浮动价格:" + sellLately + "</h2>");
+                        var h2_sellRange = $("<h2>价格范围:" + sellRange + "</h2>");
+                        content.append(h2_sellCurrent);
+                        content.append(h2_sellLately);
+                        content.append(h2_sellRange);
+
+                        var timeline = $("<div class='timeline timeline-line-dotted '></div>");
+                        var startYear = sellBeginTime.split(" ")[0];
+                        var timeline_label = $("<span class='timeline-label'><span class='label label-primary'>开始上架:" + startYear + "</span></span>");
+                        timeline.append(timeline_label);
+                        $.each(timeAndPriceList, function (index, pAndtobj) {
+                            var year = pAndtobj.time.split(" ")[0];
+                            var timeline_label_ch = "";
+                            if (year != startYear) {
+                                startYear = year;
+                                timeline_label_ch = $("<span class='timeline-label'><span class='label label-primary'>" + startYear + "</span></span>");
+                            }
+                            var leirong = "  <div class=\"timeline-event\">" +
+                                "                            <div class=\"timeline-heading\">" +
+                                "                              <h4>价格:" + pAndtobj.price + "</h4>" +
+                                "                            </div>" +
+                                "                            <div class=\"timeline-body\">" +
+                                "                             <p>时间:" + pAndtobj.time + "</p>" +
+                                "                            </div>" +
+                                "                            <div class=\"timeline-footer\">" +
+                                "                             <p class=\"text-right\">所在商城:" + mallName + "</p>" +
+                                "                            </div>" +
+                                "                        </div>";
+
+                            var timeline_item = $("<div class='timeline-item'><div class='timeline-point timeline-point-success'><i class='fa fa-money'></i></div>" + leirong + "</div>");
+
+                            timeline.append(timeline_label_ch);
+                            timeline.append(timeline_item);
+                        });
+                        content.append(timeline);
+                    }
+                    $('#myModal').modal('show');
+                    hideLoading();
+                }
+            });
+        }
+
+        function iniPage() {
+            $("#myAlert").hide();
+            var dpType = $(".dpType").val();
+            var spName = $(".spName").val();
+            if (spName == "") {
+                $("#myAlert").show();
+                return false;
+            }
+            querySP(spName, dpType);
+        }
+
+        function previous() {
+            var dpType = $(".dpType").val();
+            var spName = $(".spName").val();
+            if (spName == "") {
+                $("#myAlert").show();
+                return false;
+            }
+
+            if (page > 1) {
+                page--;
+                //查询
+                iniPage();
+                if (page == 1) {
+                    $(".previous").addClass("disabled");
+                }
+                if (page < allPages) {
+                    $(".next").removeClass("disabled");
+                }
+            }
+        }
+
+        function next() {
+            var dpType = $(".dpType").val();
+            var spName = $(".spName").val();
+            if (spName == "") {
+                $("#myAlert").show();
+                return false;
+            }
+            if (page < allPages) {
+                page++;
+                //查询
+                iniPage();
+
+                if (page == allPages) {
+                    $(".next").addClass("disabled");
+                }
+                if (page > 1) {
+                    $(".previous").removeClass("disabled");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">淘商品_丐帮提供</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="wpList.html?#">套商品_丐帮提供</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <label>价格排序</label>
+                    <select class="form-control dpSort">
+                        <option value="up">升序</option>
+                        <option value="down">降序</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>店铺</label>
+                    <select class="form-control dpType">
+                        <option value="">全部</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>商品</label>
+                    <input type="text" placeholder="请输入商品名称..." class="form-control spName">
+                </div>
+                <button type="submit" class="btn btn-success">搜索</button>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>货比三家不吃亏！</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div id="myAlert" style="display: none;" class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>警告！</strong>请填写商品名称。
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>请搜索你需要比较的商品</h2>
+            <p>Please search for the items you want to compare... </p>
+        </div>
+    </div>
+
+    <hr>
+    <ul class="pager">
+        <li onclick="previous();" class="previous disabled"><a href="#">&larr; Older</a></li>
+        <li id="page" class="active">第1页</li>
+        <li onclick="next();" class="next"><a href="#">Newer &rarr;</a></li>
+    </ul>
+    <footer>
+        <p>© <span id="year">2019</span> Company, Wxy. 想获取更多商品,请加入丐帮基地：450342630 （QQ群号）</p>
+    </footer>
+</div> <!-- /container -->
+
+<div id="shares">
+    <a href="javascript:;" id="gotop"><i class="fa fa-angle-up">回顶</i></a>
+</div>
+<div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+    <div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+        　　　　
+        <div class="progress progress-striped active" style="margin-bottom: 0;">　　
+            <div class="progress-bar" style="width: 100%;"></div>
+            　　　　
+        </div>
+        　　　　<h5 id="loadText">loading...</h5>
+    </div>
+</div>
+<script type="text/javascript">
+    var loadingTime = 50;//默认遮罩时间
+    showLoading = function (loadText) {
+        if (!!loadText) {
+            $("#loadText").html(loadText)
+        }
+        $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+    }
+    hideLoading = function () {
+        $('#loadingModal').modal('hide');
+    }
+</script>
+<script>
+    window.addEventListener("load", function () {
+        var btn = document.getElementById("gotop");
+        btn.addEventListener("mouseover", moveIn, false);
+        btn.addEventListener("mouseout", moveOut, false);
+
+        function moveIn() {
+            btn.style.color = "#fff"; //修改的是内联样式，具有最高的优先级;
+            btn.style.backgroundColor = "gold";
+        }
+
+        function moveOut() {
+            btn.style.color = "#fff";
+            btn.style.backgroundColor = "gray";
+        }
+
+        function goTop(acceleration, time) { //修改参数可调整返回顶部的速度
+            acceleration = acceleration || 0.1;
+            time = time || 10;
+            var speed = 1 + acceleration;
+
+            function getScrollTop() { //取得滚动条的竖直距离
+                return document.documentElement.scrollTop || document.body.scrollTop;
+            }
+
+            function setScrollTop(value) { //设置滚动条的竖直距离,实现效果的关键就是在很短的间隔时间内不断地修改滚动条的竖直距离,以实现滚动效果
+                document.documentElement.scrollTop = value;
+                document.body.scrollTop = value;
+            }
+
+            window.onscroll = function () {
+                var scrollTop = getScrollTop();
+                if (scrollTop > 100) { //判断滚动条距离窗口顶部多远时显示出来，这里是100px
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            };
+            btn.onclick = function () {
+                var timer = setInterval(function () {
+                    setScrollTop(Math.floor(getScrollTop() / speed)); //这行代码是关键，取得滚动条竖直距离，除以speed后再给滚动条设置竖直距离
+                    if (getScrollTop() == 0)
+                        clearInterval(timer);
+                }, time);
+            };
+        }
+
+        goTop(0.1, 8);
+    }, false);
+</script>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    商品价格时间轴
+                </h4>
+            </div>
+            <div class="modal-body">
+                <h2>商城</h2>
+                <div class="timeline timeline-line-dotted">
+				<span class="timeline-label">
+					<span class="label label-primary">17.03.2016</span>
+				</span>
+                    <div class="timeline-item">
+                        <div class="timeline-point timeline-point-success">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="timeline-event">
+                            <div class="timeline-heading">
+                                <h4>MoneyService Transfer</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p>Money transfer. By Alex, Wallet ID: 1234567890, Amount: 10$</p>
+                            </div>
+                            <div class="timeline-footer">
+                                <p class="text-right">17.03.2016 10:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
