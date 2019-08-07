@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>JT</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: 微软雅黑, 黑体, Times;
@@ -58,22 +60,22 @@
 
         #get {
             float: right;
-            font-size: 24px;
-            letter-spacing: 0.1em;
-            text-align: center;
-            height: auto;
-            width: 6em;
-            margin-left: 0.3em;
+            /*font-size: 24px;*/
+            /*letter-spacing: 0.1em;*/
+            /*text-align: center;*/
+            /*height: auto;*/
+            /*width: 6em;*/
+            /*margin-left: 0.3em;*/
         }
 
         #back {
             float: left;
-            font-size: 24px;
-            letter-spacing: 0.1em;
-            text-align: center;
-            height: auto;
-            width: 6em;
-            margin-left: 0.3em;
+            /*font-size: 24px;*/
+            /*letter-spacing: 0.1em;*/
+            /*text-align: center;*/
+            /*height: auto;*/
+            /*width: 6em;*/
+            /*margin-left: 0.3em;*/
         }
 
         .bdsharebuttonbox {
@@ -90,12 +92,14 @@
         <span id="soupBody"></span>
     </p>
     <div class="bdsharebuttonbox">
-        <input id="back" type="button" value="返回">
-        <input id="get" type="button">
+        <!--<input id="back" type="button" value="返回">-->
+        <!--<input id="get" type="button">-->
+        <span id="back" href='#' class='btn btn-success'>返回 </span>
+        <span id="get" href='#' class='btn btn-info'>喝碗鸡汤 </span>
     </div>
 </div>
 <div class="foot">
-    <footer style="text-align: center;">By汪显阳</footer>
+    <footer style="text-align: center;width: 100%;">By汪显阳</footer>
 </div>
 <script>
     $("#back").click(

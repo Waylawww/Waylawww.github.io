@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>~七夕快乐~</title>
     <!--<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- style.css -->
     <style type="text/css">
         * {
@@ -910,12 +912,12 @@
     <style type="text/css">
         #hjt {
             position: fixed;
-            font-size: 24px;
-            letter-spacing: 0.1em;
-            text-align: center;
-            height: auto;
-            width: 6em;
-            margin-left: 0.3em;
+            /*font-size: 24px;*/
+            /*letter-spacing: 0.1em;*/
+            /*text-align: center;*/
+            /*height: auto;*/
+            /*width: 6em;*/
+            /*margin-left: 0.3em;*/
             top: 15px;
             right: 15px;
         }
@@ -989,7 +991,7 @@
     <div id="snowflake"></div>
     <div id="boy" class="charector"></div>
 </div>
-<footer style="text-align: center;position: fixed;left: 0;bottom: 0;">By汪显阳</footer>
+<footer style="text-align: center;position: fixed;left: 0;bottom: 0;width: 100%;">By汪显阳</footer>
 <!--<audio src="https://music.163.com/song/media/outer/url?id=28481582.mp3" autoplay="ture" loop="loop"></audio>-->
 <audio controls="controls" autoplay="ture" loop="loop">
     <source src="https://music.163.com/song/media/outer/url?id=28481582.mp3"
@@ -998,7 +1000,9 @@
 </audio>
 <iframe id="jt_fr" src="jt.html" border="0" style="height: 100%;width: 100%;display: none;position: fixed;left: 0;top: 0;">
 </iframe>
-<input id="hjt" type="button" value="喝碗鸡汤">
+<!--<input id="hjt" type="button" value="喝碗鸡汤">-->
+
+<a id="hjt"  href='#' class='btn btn-success'>喝碗鸡汤 </a>
 <!-- index.js -->
 <script type="text/javascript">
     $("#hjt").click(function () {
