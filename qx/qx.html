@@ -1,56 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>~七夕快乐~</title>
-	<!--<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>-->
+    <meta charset="UTF-8">
+    <title>~七夕快乐~</title>
+    <!--<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>-->
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<!-- style.css -->
-	<style type="text/css">
-		*{margin: 0;padding: 0;}
-		ul,li{list-style-type: none;}
-		#content{
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-			position: absolute;
-		}
-
-		.content-wrap{
-			position: relative;
-		}
-		.content-wrap>li{
-			float: left;
-			overflow: hidden;
-			position: relative;
-		}
-	</style>
-	<!-- pageA.css -->
-	<style type="text/css">
-		.a_background{
-			width: 100%;
-			height: 100%;
-			position: absolute;
-		}
-		.a_background_top{
-			width: 100%;
-			height: 71.6%;
-			background-image: url(http://m.qpic.cn/psb?/V13IGkne4fSauU/43CSwwlvOAFuqMsUBgtJxAfe2gEvaeB2eyYuiDbZcJQ!/b/dDYBAAAAAAAA&bo=oQWFAgAAAAADFxE!&rf=viewer_4);
-			background-size:100% 100%; 
-		}
-		.a_background_middle{
-			width: 100%;
-			height: 13.1%;
-			background-image: url("http://img.mukewang.com/55addf800001ff2e14410118.png");
-			background-size: 100% 100%;
-		}
-		.a_background_botton{
-		    width: 100%;
-		    height: 15.3%;
-		    background-image: url("http://img.mukewang.com/55addfcb000189b314410138.png");
-		    background-size: 100% 100%;
+    <!-- style.css -->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
         }
-         /*-------- 太阳自转以及动画 --------*/
+
+        ul, li {
+            list-style-type: none;
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .content-wrap {
+            position: relative;
+        }
+
+        .content-wrap > li {
+            float: left;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+    <!-- pageA.css -->
+    <style type="text/css">
+        .a_background {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .a_background_top {
+            width: 100%;
+            height: 71.6%;
+            background-image: url(http://m.qpic.cn/psb?/V13IGkne4fSauU/43CSwwlvOAFuqMsUBgtJxAfe2gEvaeB2eyYuiDbZcJQ!/b/dDYBAAAAAAAA&bo=oQWFAgAAAAADFxE!&rf=viewer_4);
+            background-size: 100% 100%;
+        }
+
+        .a_background_middle {
+            width: 100%;
+            height: 13.1%;
+            background-image: url("http://img.mukewang.com/55addf800001ff2e14410118.png");
+            background-size: 100% 100%;
+        }
+
+        .a_background_botton {
+            width: 100%;
+            height: 15.3%;
+            background-image: url("http://img.mukewang.com/55addfcb000189b314410138.png");
+            background-size: 100% 100%;
+        }
+
+        /*-------- 太阳自转以及动画 --------*/
         #sun {
             background: url("http://img.mukewang.com/55ade004000106c202010201.png") no-repeat;
             position: absolute;
@@ -60,11 +72,13 @@
             width: 201px;
             right: 40%;
         }
-         /* 天空云 */
+
+        /* 天空云 */
         .cloud {
             z-index: 2;
             position: absolute;
         }
+
         .cloud1 {
             width: 181px;
             height: 101px;
@@ -72,6 +86,7 @@
             top: 15%;
             background: url("http://img.mukewang.com/55addfde0001aec501810101.png");
         }
+
         .cloud2 {
             width: 301px;
             height: 140px;
@@ -79,83 +94,90 @@
             background: url("http://img.mukewang.com/55addff500016df503010140.png");
         }
 
-            /*人物脚动画*/
-	    .slowWalk{
-		    -webkit-animation-name: person-slow; 
-		    /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
-		    -webkit-animation-duration: 950ms;
-		    /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
-		    -webkit-animation-iteration-count: infinite;
-		    /*动画切换的方式是一帧一帧的改变*/
-		    -webkit-animation-timing-function: steps(1, start);
-		    -moz-animation-name: person-slow;
-		    -moz-animation-duration: 950ms;
-		    -moz-animation-iteration-count: infinite;
-		    -moz-animation-timing-function: steps(1, start)
-	    }
-        @-webkit-keyframes person-slow {
-	        0% {
-	            background-position: -0px -291px;
-	        }
-	        25% {
-	            background-position: -602px -0px;
-	        }
-	        50% {
-	            background-position: -302px -291px;
-	        }
-	        75% {
-	            background-position: -151px -291px;
-	        }
-	        100% {
-	            background-position: -0px -291px;
-	        }
+        /*人物脚动画*/
+        .slowWalk {
+            -webkit-animation-name: person-slow;
+            /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
+            -webkit-animation-duration: 950ms;
+            /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
+            -webkit-animation-iteration-count: infinite;
+            /*动画切换的方式是一帧一帧的改变*/
+            -webkit-animation-timing-function: steps(1, start);
+            -moz-animation-name: person-slow;
+            -moz-animation-duration: 950ms;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: steps(1, start)
         }
-	    @-moz-keyframes person-slow {
-	        0% {
-	            background-position: -0px -291px;
-	        }
-	        25% {
-	            background-position: -602px -0px;
-	        }
-	        50% {
-	            background-position: -302px -291px;
-	        }
-	        75% {
-	            background-position: -151px -291px;
-	        }
-	        100% {
-	            background-position: -0px -291px;
-	        }
-	    }
+
+        @-webkit-keyframes person-slow {
+            0% {
+                background-position: -0px -291px;
+            }
+            25% {
+                background-position: -602px -0px;
+            }
+            50% {
+                background-position: -302px -291px;
+            }
+            75% {
+                background-position: -151px -291px;
+            }
+            100% {
+                background-position: -0px -291px;
+            }
+        }
+
+        @-moz-keyframes person-slow {
+            0% {
+                background-position: -0px -291px;
+            }
+            25% {
+                background-position: -602px -0px;
+            }
+            50% {
+                background-position: -302px -291px;
+            }
+            75% {
+                background-position: -151px -291px;
+            }
+            100% {
+                background-position: -0px -291px;
+            }
+        }
+
         /*太阳下降动画*/
-	    .rotation {
+        .rotation {
             -webkit-animation-name: rotation;
             -webkit-animation-duration: 30s;
             -moz-animation-name: rotation;
             -moz-animation-duration: 30s;
         }
+
         @-webkit-keyframes rotation {
             0% {
-			    transform: translateX(0) translateY(0);
-			}
-			100% {
-			    transform: translateX(-2000px) translateY(400px);
-			}
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-2000px) translateY(400px);
+            }
         }
+
         @-moz-keyframes rotation {
-			0% {
-			    transform: translateX(0) translateY(0);
-			}
-			100% {
-			    transform: translateX(-2000px) translateY(400px);
-			}
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-2000px) translateY(400px);
+            }
         }
-	    .pauseWalk {
-		   -webkit-animation-play-state: paused;
-		   -moz-animation-play-state: paused;
-		}
-		/*天空 云动画*/
-		.cloud1Anim{
+
+        .pauseWalk {
+            -webkit-animation-play-state: paused;
+            -moz-animation-play-state: paused;
+        }
+
+        /*天空 云动画*/
+        .cloud1Anim {
             -webkit-animation-name: smallCloud;
             -webkit-animation-duration: 10s;
             -webkit-animation-iteration: infinite;
@@ -163,7 +185,8 @@
             -moz-animation-duration: 10s;
             -moz-animation-iteration: infinite;
         }
-        .cloud2Anim{
+
+        .cloud2Anim {
             -webkit-animation-name: largeCloud;
             -webkit-animation-duration: 20s;
             -webkit-animation-iteration: infinite;
@@ -171,6 +194,7 @@
             -moz-animation-duration: 20s;
             -moz-animation-iteration: infinite;
         }
+
         @-webkit-keyframes smallCloud {
             0% {
                 left: -5%;
@@ -179,7 +203,7 @@
                 left: 100%;
             }
         }
-        
+
         @-moz-keyframes smallCloud {
             0% {
                 left: -5%;
@@ -188,7 +212,7 @@
                 left: 100%;
             }
         }
-        
+
         @-webkit-keyframes largeCloud {
             0% {
                 right: -5%;
@@ -197,7 +221,7 @@
                 right: 100%;
             }
         }
-        
+
         @-moz-keyframes largeCloud {
             0% {
                 right: -5%;
@@ -206,221 +230,228 @@
                 right: 100%;
             }
         }
-	</style>
-	<!-- pageB.css -->
-	<style type="text/css">
-		/*背景图*/
+    </style>
+    <!-- pageB.css -->
+    <style type="text/css">
+        /*背景图*/
 
-		.b_background {
-		    width: 100%;
-		    height: 100%;
-		    background-image: url("http://img.mukewang.com/55ade06f00015a0d14410901.png");
-		    background-size: 100% 100%;
-		    position: absolute;
-		}
+        .b_background {
+            width: 100%;
+            height: 100%;
+            background-image: url("http://img.mukewang.com/55ade06f00015a0d14410901.png");
+            background-size: 100% 100%;
+            position: absolute;
+        }
 
-		.b_background_preload {
-		    background: url("http://img.mukewang.com/55ade0be0001a37914410901.png") no-repeat -9999px -9999px;
-		}
+        .b_background_preload {
+            background: url("http://img.mukewang.com/55ade0be0001a37914410901.png") no-repeat -9999px -9999px;
+        }
 
-		.lamp-bright {
-		   background-image: url("http://img.mukewang.com/55ade0be0001a37914410901.png");
-		}
-		/*商店*/
+        .lamp-bright {
+            background-image: url("http://img.mukewang.com/55ade0be0001a37914410901.png");
+        }
 
-		.shop {
-		    width: 39.5%;
-		    height: 35.5%;
-		    position: absolute;
-		    left: 29%;
-		    top: 36.5%;
-		}
+        /*商店*/
 
-		.door {
-		    position: absolute;
-		    width: 32%;
-		    height: 100%;
-		    top: 32%;
-		    height: 68%;
-		    overflow: hidden;
-		    left: 58.5%;
-		}
+        .shop {
+            width: 39.5%;
+            height: 35.5%;
+            position: absolute;
+            left: 29%;
+            top: 36.5%;
+        }
 
-		.door-left,
-		.door-right {
-		    width: 50%;
-		    height: 100%;
-		    position: absolute;
-		}
+        .door {
+            position: absolute;
+            width: 32%;
+            height: 100%;
+            top: 32%;
+            height: 68%;
+            overflow: hidden;
+            left: 58.5%;
+        }
 
-		.door-left {
-		    left: 0%;
-		    background: url(http://img.mukewang.com/55ade1140001050d00910231.png);
-		    background-size: 100% 100%;
-		}
+        .door-left,
+        .door-right {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+        }
 
-		.door-right {
-		    left: 50%;
-		    background: url(http://img.mukewang.com/55ade12100019f5b00910231.png);
-		    background-size: 100% 100%;
-		}
+        .door-left {
+            left: 0%;
+            background: url(http://img.mukewang.com/55ade1140001050d00910231.png);
+            background-size: 100% 100%;
+        }
 
-		/*取花*/
-	   .slowFlolerWalk {
-	   	   animation-name: person-floler-slow;
-	       animation-duration: 950ms;
-	       animation-iteration-count: infinite;
-	       animation-timing-function: step-start;
-	       -webkit-animation-name: person-floler-slow;
-	       -webkit-animation-duration: 950ms;
-	       -webkit-animation-iteration-count: infinite;
-	       -webkit-animation-timing-function: step-start;
-	       -moz-animation-name: person-floler-slow;
-	       -moz-animation-duration: 950ms;
-	       -moz-animation-iteration-count: infinite;
-	       -moz-animation-timing-function: step-start;
-	   }
-	    /*带花*/
-	    @keyframes person-floler-slow {
-	       0% {
-	           background-position: -453px -0px;
-	       }
-	       25% {
-	           background-position: -904px -0px;
-	       }
-	       50% {
-	           background-position: -451px -0px;
-	       }
-	       75% {
-	           background-position: -753px -0px;
-	       }
-	       100% {
-	           background-position: -300px -0px;
-	       }
-	   }
-	   @-webkit-keyframes person-floler-slow {
-	       0% {
-	           background-position: -453px -0px;
-	       }
-	       25% {
-	           background-position: -904px -0px;
-	       }
-	       50% {
-	           background-position: -451px -0px;
-	       }
-	       75% {
-	           background-position: -753px -0px;
-	       }
-	       100% {
-	           background-position: -300px -0px;
-	       }
-	   }
-	    @-moz-keyframes person-floler-slow {
-	       0% {
-	           background-position: -453px -0px;
-	       }
-	       25% {
-	           background-position: -904px -0px;
-	       }
-	       50% {
-	           background-position: -451px -0px;
-	       }
-	       75% {
-	           background-position: -753px -0px;
-	       }
-	       100% {
-	           background-position: -300px -0px;
-	       }
-	   }
-		   /*鸟*/
+        .door-right {
+            left: 50%;
+            background: url(http://img.mukewang.com/55ade12100019f5b00910231.png);
+            background-size: 100% 100%;
+        }
 
-		.bird {
-		    min-width: 91px;
-		    min-height: 71px;
-		    top: 10%;
-		    position: absolute;
-		    z-index: 10;
-		    right: -91px;
-		    background: url(http://img.mukewang.com/55ade1700001b38302730071.png) -182px 0px no-repeat;
-		}
-		.birdFly {
-		    -webkit-animation-name: bird-slow;
-		    -webkit-animation-duration: 400ms;
-		    -webkit-animation-timing-function: step-start;
-		    -webkit-animation-iteration-count: infinite;
-		    -moz-animation-name: bird-slow;
-		    -moz-animation-duration: 400ms;
-		    -moz-animation-timing-function: step-start;
-		    -moz-animation-iteration-count: infinite;
-		}
-		/*鸟慢飞*/
-		@-webkit-keyframes bird-slow {
-		    /* 鸟飞的动作 */
-		    0% {
-		    background-position: -182px 0px;
-			}
-			50% {
-			    background-position: 0px 0px;
-			}
-			75% {
-			    background-position: -91px 0px;
-			}
-			100% {
-			    background-position: -182px 0px;
-			}
-		}
+        /*取花*/
+        .slowFlolerWalk {
+            animation-name: person-floler-slow;
+            animation-duration: 950ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: step-start;
+            -webkit-animation-name: person-floler-slow;
+            -webkit-animation-duration: 950ms;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: step-start;
+            -moz-animation-name: person-floler-slow;
+            -moz-animation-duration: 950ms;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: step-start;
+        }
 
-		@-moz-keyframes bird-slow {
-		    /* 鸟飞的动作 */
-		    0% {
-		    background-position: -182px 0px;
-			}
-			50% {
-			    background-position: 0px 0px;
-			}
-			75% {
-			    background-position: -91px 0px;
-			}
-			100% {
-			    background-position: -182px 0px;
-			}
-		}
-	</style>
-	<!-- pageC.css -->
-	<style type="text/css">
-		/*背景图*/
-        
+        /*带花*/
+        @keyframes person-floler-slow {
+            0% {
+                background-position: -453px -0px;
+            }
+            25% {
+                background-position: -904px -0px;
+            }
+            50% {
+                background-position: -451px -0px;
+            }
+            75% {
+                background-position: -753px -0px;
+            }
+            100% {
+                background-position: -300px -0px;
+            }
+        }
+
+        @-webkit-keyframes person-floler-slow {
+            0% {
+                background-position: -453px -0px;
+            }
+            25% {
+                background-position: -904px -0px;
+            }
+            50% {
+                background-position: -451px -0px;
+            }
+            75% {
+                background-position: -753px -0px;
+            }
+            100% {
+                background-position: -300px -0px;
+            }
+        }
+
+        @-moz-keyframes person-floler-slow {
+            0% {
+                background-position: -453px -0px;
+            }
+            25% {
+                background-position: -904px -0px;
+            }
+            50% {
+                background-position: -451px -0px;
+            }
+            75% {
+                background-position: -753px -0px;
+            }
+            100% {
+                background-position: -300px -0px;
+            }
+        }
+
+        /*鸟*/
+
+        .bird {
+            min-width: 91px;
+            min-height: 71px;
+            top: 10%;
+            position: absolute;
+            z-index: 10;
+            right: -91px;
+            background: url(http://img.mukewang.com/55ade1700001b38302730071.png) -182px 0px no-repeat;
+        }
+
+        .birdFly {
+            -webkit-animation-name: bird-slow;
+            -webkit-animation-duration: 400ms;
+            -webkit-animation-timing-function: step-start;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-name: bird-slow;
+            -moz-animation-duration: 400ms;
+            -moz-animation-timing-function: step-start;
+            -moz-animation-iteration-count: infinite;
+        }
+
+        /*鸟慢飞*/
+        @-webkit-keyframes bird-slow {
+            /* 鸟飞的动作 */
+            0% {
+                background-position: -182px 0px;
+            }
+            50% {
+                background-position: 0px 0px;
+            }
+            75% {
+                background-position: -91px 0px;
+            }
+            100% {
+                background-position: -182px 0px;
+            }
+        }
+
+        @-moz-keyframes bird-slow {
+            /* 鸟飞的动作 */
+            0% {
+                background-position: -182px 0px;
+            }
+            50% {
+                background-position: 0px 0px;
+            }
+            75% {
+                background-position: -91px 0px;
+            }
+            100% {
+                background-position: -182px 0px;
+            }
+        }
+    </style>
+    <!-- pageC.css -->
+    <style type="text/css">
+        /*背景图*/
+
         .c_background {
             width: 100%;
             height: 100%;
             background-size: 100% 100%;
             position: absolute;
         }
-        
-        .c_background_top{
+
+        .c_background_top {
             width: 100%;
             height: 71.6%;
             background-image: url("http://img.mukewang.com/55ade19b0001d92c14410645.png");
             background-size: 100% 100%;
         }
-        
-        
-        .c_background_middle{
+
+
+        .c_background_middle {
             width: 100%;
             height: 13.1%;
             background-image: url("http://img.mukewang.com/55ade1b3000135c114410118.png");
             background-size: 100% 100%;
         }
-        
-        .c_background_botton{
+
+        .c_background_botton {
             width: 100%;
             height: 15.3%;
             background-image: url("http://img.mukewang.com/55ade1c30001db5d14410138.png");
             background-size: 100% 100%;
         }
-        
+
         /*小女孩*/
-        
+
         .girl {
             background: url(http://img.mukewang.com/55ade30d000100dc10570291.png) -755px -0px no-repeat;
             position: absolute;
@@ -430,69 +461,69 @@
             height: 291px;
         }
 
-	    .girl-rotate {
-	        -webkit-animation-name: girl-rotate;
-	        -webkit-animation-duration: 850ms;
-	        -webkit-animation-iteration-count: 1;
-	        -webkit-animation-timing-function: step-start;
-	        -webkit-animation-fill-mode: forwards;
-	        -moz-animation-name: girl-rotate;
-	        -moz-animation-duration: 850ms;
-	        -moz-animation-iteration-count: 1;
-	        -moz-animation-timing-function: step-start;
-	        -moz-animation-fill-mode: forwards;
-	    }
-	    
-	    @-webkit-keyframes girl-rotate {
-	        0% {
-	            background-position: -604px -0px;
-	        }
-	        16.7% {
-	            background-position: -151px -0px;
-	        }
-	        33.4% {
-	            background-position: -906px -0px;
-	        }
-	        50.1% {
-	            background-position: -0px -0px;
-	        }
-	        66.8% {
-	            background-position: -302px -0px;
-	        }
-	        83.5% {
-	            background-position: -453px -0px;
-	        }
-	        100% {
-	            background-position: -604px -0px;
-	        }
-	    }
-	    
-	    @-moz-keyframes girl-rotate {
-	        0% {
-	            /*background-position: -604px -0px;*/
-	        }
-	        16.7% {
-	            background-position: -151px -0px;
-	        }
-	        33.4% {
-	            background-position: -906px -0px;
-	        }
-	        50.1% {
-	            background-position: -0px -0px;
-	        }
-	        66.8% {
-	            background-position: -302px -0px;
-	        }
-	        83.5% {
-	            background-position: -453px -0px;
-	        }
-	        100% {
-	            background-position: -604px -0px;
-	        }
-	    }
-        
+        .girl-rotate {
+            -webkit-animation-name: girl-rotate;
+            -webkit-animation-duration: 850ms;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-timing-function: step-start;
+            -webkit-animation-fill-mode: forwards;
+            -moz-animation-name: girl-rotate;
+            -moz-animation-duration: 850ms;
+            -moz-animation-iteration-count: 1;
+            -moz-animation-timing-function: step-start;
+            -moz-animation-fill-mode: forwards;
+        }
+
+        @-webkit-keyframes girl-rotate {
+            0% {
+                background-position: -604px -0px;
+            }
+            16.7% {
+                background-position: -151px -0px;
+            }
+            33.4% {
+                background-position: -906px -0px;
+            }
+            50.1% {
+                background-position: -0px -0px;
+            }
+            66.8% {
+                background-position: -302px -0px;
+            }
+            83.5% {
+                background-position: -453px -0px;
+            }
+            100% {
+                background-position: -604px -0px;
+            }
+        }
+
+        @-moz-keyframes girl-rotate {
+            0% {
+                /*background-position: -604px -0px;*/
+            }
+            16.7% {
+                background-position: -151px -0px;
+            }
+            33.4% {
+                background-position: -906px -0px;
+            }
+            50.1% {
+                background-position: -0px -0px;
+            }
+            66.8% {
+                background-position: -302px -0px;
+            }
+            83.5% {
+                background-position: -453px -0px;
+            }
+            100% {
+                background-position: -604px -0px;
+            }
+        }
+
         /*桥*/
-        
+
         .bridge-bottom {
             position: absolute;
             width: 41%;
@@ -502,13 +533,14 @@
             overflow: hidden;
             /*    -webkit-transform:perspective(8px) rotateX(.8deg); */
         }
+
         /*波浪水布局*/
-        
+
         .water {
             width: 100%;
             height: 100%;
         }
-        
+
         .water_1,
         .water_2,
         .water_3,
@@ -521,14 +553,14 @@
             -webkit-animation-direction: alternate;
             -webkit-anination-timing-function: linear;
             -webkit-animation-iteration-count: infinite;
-            
+
             -moz-animation-name: shake;
             -moz-animation-duration: 40s;
             -moz-animation-direction: alternate;
             -moz-anination-timing-function: linear;
             -moz-animation-iteration-count: infinite;
         }
-        
+
         .water_1 {
             width: 131px;
             height: 15px;
@@ -536,7 +568,7 @@
             left: 35%;
             background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -261px -0px no-repeat;
         }
-        
+
         .water_2 {
             width: 161px;
             height: 9px;
@@ -546,7 +578,7 @@
             -webkit-animation-delay: 2s;
             -moz-animation-delay: 2s;
         }
-        
+
         .water_3 {
             width: 261px;
             height: 29px;
@@ -556,7 +588,7 @@
             -webkit-animation-delay: 1s;
             -moz-animation-delay: 1s;
         }
-        
+
         .water_4 {
             width: 301px;
             height: 12px;
@@ -566,7 +598,7 @@
             -webkit-animation-delay: 3s;
             -moz-animation-delay: 3s;
         }
-        
+
         @-webkit-keyframes shake {
             0%, 100% {
                 -webkit-transform: translate3d(0, 0, 0);
@@ -585,7 +617,7 @@
                 -webkit-transform: translate3d(30px, 0px, 0);
             }
         }
-        
+
         @-moz-keyframes shake {
             0%, 100% {
                 -moz-transform: translate3d(0, 0, 0);
@@ -604,14 +636,15 @@
                 -moz-transform: translate3d(30px, 0px, 0);
             }
         }
+
         /*星星*/
-        
+
         .stars {
             width: 100%;
             height: 100%;
             position: absolute;
         }
-        
+
         .stars > li {
             position: absolute;
             width: 30px;
@@ -626,49 +659,49 @@
             -moz-animation-iteration-count: infinite;
             -moz-animation-direction: alternate;
         }
-        
+
         .stars1 {
             top: 20%;
             left: 30%;
             -webkit-animation-duration: 5s;
             -moz-animation-duration: 5s;
         }
-        
+
         .stars2 {
             top: 15%;
             left: 20%;
-           -webkit-animation-duration: 5s;
-           -moz-animation-duration: 5s;
+            -webkit-animation-duration: 5s;
+            -moz-animation-duration: 5s;
         }
-        
+
         .stars3 {
             top: 25%;
             left: 85%;
             -webkit-animation-duration: 5s;
             -moz-animation-duration: 5s;
         }
-        
+
         .stars4 {
             top: 30%;
             left: 70%;
-          -webkit-animation-duration: 5s;
-        -moz-animation-duration: 5s;
+            -webkit-animation-duration: 5s;
+            -moz-animation-duration: 5s;
         }
-        
+
         .stars5 {
             top: 25%;
             left: 20%;
-           -webkit-animation-duration: 5s;
-        -moz-animation-duration: 5s;
+            -webkit-animation-duration: 5s;
+            -moz-animation-duration: 5s;
         }
-        
+
         .stars6 {
             top: 10%;
             left: 65%;
-           -webkit-animation-duration: 5s;
-        -moz-animation-duration: 5s;
+            -webkit-animation-duration: 5s;
+            -moz-animation-duration: 5s;
         }
-        
+
         @-webkit-keyframes flash {
             0%, 50%, 100% {
                 opacity: 1;
@@ -678,7 +711,7 @@
                 opacity: 0;
             }
         }
-        
+
         @-moz-keyframes flash {
             0%, 50%, 100% {
                 opacity: 1;
@@ -690,1285 +723,1295 @@
         }
 
         .logo {
-		    width: 185px;
-		    height: 81px;
-		    background-image: url(http://m.qpic.cn/psb?/V13IGkne4fSauU/yzpQcPvapTsm6UA5Vv0hkRRmW6LqqsqJhNCfAbLHwqk!/b/dGEBAAAAAAAA&bo=uQBRAAAAAAADB8o!&rf=viewer_4);
-		    z-index: 999999;
-		    position: absolute;
-		    left: 50%;
-		    margin-left: -92.5px;
-		    top: 30px;
-		    display: none;
-		}
+            width: 185px;
+            height: 81px;
+            background-image: url(http://m.qpic.cn/psb?/V13IGkne4fSauU/yzpQcPvapTsm6UA5Vv0hkRRmW6LqqsqJhNCfAbLHwqk!/b/dGEBAAAAAAAA&bo=uQBRAAAAAAADB8o!&rf=viewer_4);
+            z-index: 999999;
+            position: absolute;
+            left: 50%;
+            margin-left: -92.5px;
+            top: 30px;
+            display: none;
+        }
 
-		.logolightSpeedIn {
-		    display: block;
-		    -webkit-animation-name: lightSpeedIn;
-		    -webkit-animation-timing-function: ease-out;
-		    -webkit-animation-duration: 1s;
-		    -moz-animation-name: lightSpeedIn;
-		    -moz-animation-timing-function: ease-out;
-		    -moz-animation-duration: 1s;
-		}
+        .logolightSpeedIn {
+            display: block;
+            -webkit-animation-name: lightSpeedIn;
+            -webkit-animation-timing-function: ease-out;
+            -webkit-animation-duration: 1s;
+            -moz-animation-name: lightSpeedIn;
+            -moz-animation-timing-function: ease-out;
+            -moz-animation-duration: 1s;
+        }
 
-		@-webkit-keyframes lightSpeedIn {
-		    0% {
-		        -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
-		        opacity: 0;
-		    }
-		    60% {
-		        -webkit-transform: skewX(20deg);
-		        opacity: 1;
-		    }
-		    80% {
-		        -webkit-transform: skewX(-5deg);
-		        opacity: 1;
-		    }
-		    100% {
-		        -webkit-transform: none;
-		        opacity: 1;
-		    }
-		}
+        @-webkit-keyframes lightSpeedIn {
+            0% {
+                -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+                opacity: 0;
+            }
+            60% {
+                -webkit-transform: skewX(20deg);
+                opacity: 1;
+            }
+            80% {
+                -webkit-transform: skewX(-5deg);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: none;
+                opacity: 1;
+            }
+        }
 
-		@-moz-keyframes lightSpeedIn {
-		    0% {
-		        -moz-transform: translate3d(100%, 0, 0) skewX(-30deg);
-		        opacity: 0;
-		    }
-		    60% {
-		        -moz-transform: skewX(20deg);
-		        opacity: 1;
-		    }
-		    80% {
-		        -moz-transform: skewX(-5deg);
-		        opacity: 1;
-		    }
-		    100% {
-		        -moz-transform: none;
-		        opacity: 1;
-		    }
-		}
+        @-moz-keyframes lightSpeedIn {
+            0% {
+                -moz-transform: translate3d(100%, 0, 0) skewX(-30deg);
+                opacity: 0;
+            }
+            60% {
+                -moz-transform: skewX(20deg);
+                opacity: 1;
+            }
+            80% {
+                -moz-transform: skewX(-5deg);
+                opacity: 1;
+            }
+            100% {
+                -moz-transform: none;
+                opacity: 1;
+            }
+        }
 
-		.logoshake {
-		    -webkit-animation-name: logoshake;
-		    -webkit-animation-duration: 0.5s;
-		    -moz-animation-name: logoshake;
-		    -moz-animation-duration: 0.5s;
-		}
+        .logoshake {
+            -webkit-animation-name: logoshake;
+            -webkit-animation-duration: 0.5s;
+            -moz-animation-name: logoshake;
+            -moz-animation-duration: 0.5s;
+        }
 
-		@-webkit-keyframes logoshake {
-		    /* 补充代码使logo产生左右晃动效果 */ 
-		    0%, 100% {
-		    -moz-transform: translate3d(0, 0, 0);
-		}
-		10%,
-		30%,
-		50%,
-		70%,
-		90% {
-		    -moz-transform: translate3d(-5px, 0, 0);
-		}
-		20%,
-		40%,
-		60%,
-		80% {
-		    -moz-transform: translate3d(10px, 0, 0);
-		}
-		}
+        @-webkit-keyframes logoshake {
+            /* 补充代码使logo产生左右晃动效果 */
+            0%, 100% {
+                -moz-transform: translate3d(0, 0, 0);
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                -moz-transform: translate3d(-5px, 0, 0);
+            }
+            20%,
+            40%,
+            60%,
+            80% {
+                -moz-transform: translate3d(10px, 0, 0);
+            }
+        }
 
-		@-moz-keyframes logoshake {
-		    /* 补充代码使logo产生左右晃动效果 */ 
-		    0%, 100% {
-		    -moz-transform: translate3d(0, 0, 0);
-		}
-		10%,
-		30%,
-		50%,
-		70%,
-		90% {
-		    -moz-transform: translate3d(-5px, 0, 0);
-		}
-		20%,
-		40%,
-		60%,
-		80% {
-		    -moz-transform: translate3d(10px, 0, 0);
-		}
-		}
-	</style>
-	<!-- index.css -->
-	<style type="text/css">
-		.charector{
-			width: 151px;
-			height: 291px; 
-			 background: url(http://img.mukewang.com/55ade248000198ae10550582.png) -0px -291px no-repeat;
-	        position: absolute;
-	        /* 设置一个元素的坐标 */
-	        left: 6%;
-	        top: 55%;
-		}
-		   /*男孩转身*/
-   
-	   .boy-rotate {
-	       -webkit-animation-name: boy-rotate;
-	       -webkit-animation-duration: 850ms;
-	       -webkit-animation-iteration-count: 1;
-	       -webkit-animation-timing-function: step-start;
-	       -webkit-animation-fill-mode: forwards;
-	       -moz-animation-name: boy-rotate;
-	       -moz-animation-duration: 850ms;
-	       -moz-animation-iteration-count: 1;
-	       -moz-animation-timing-function: step-start;
-	       -moz-animation-fill-mode: forwards;
-	   }
-	   
-	   @-webkit-keyframes boy-rotate {
-	       0% {
-	           background-position: -603px -291px;
-	       }
-	       16.7% {
-	           background-position: -150px -0px;
-	       }
-	       33.4% {
-	           background-position: -453px -291px;
-	       }
-	       50.1% {
-	           background-position: -0px -0px;
-	       }
-	       66.8% {
-	           background-position: -903px -291px;
-	       }
-	       83.5% {
-	           background-position: -753px -291px;
-	       }
-	       100% {
-	           background-position: -603px -291px;
-	       }
-	   }
-	   
-	   @-moz-keyframes boy-rotate {
-	       0% {
-	           /*background-position: -603px -291px;*/
-	       }
-	       16.7% {
-	           background-position: -150px -0px;
-	       }
-	       33.4% {
-	           background-position: -453px -291px;
-	       }
-	       50.1% {
-	           background-position: -0px -0px;
-	       }
-	       66.8% {
-	           background-position: -903px -291px;
-	       }
-	       83.5% {
-	           background-position: -753px -291px;
-	       }
-	       100% {
-	           background-position: -603px -291px;
-	       }
-	   }
-		
+        @-moz-keyframes logoshake {
+            /* 补充代码使logo产生左右晃动效果 */
+            0%, 100% {
+                -moz-transform: translate3d(0, 0, 0);
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                -moz-transform: translate3d(-5px, 0, 0);
+            }
+            20%,
+            40%,
+            60%,
+            80% {
+                -moz-transform: translate3d(10px, 0, 0);
+            }
+        }
+    </style>
+    <!-- index.css -->
+    <style type="text/css">
+        .charector {
+            width: 151px;
+            height: 291px;
+            background: url(http://img.mukewang.com/55ade248000198ae10550582.png) -0px -291px no-repeat;
+            position: absolute;
+            /* 设置一个元素的坐标 */
+            left: 6%;
+            top: 55%;
+        }
+
+        /*男孩转身*/
+
+        .boy-rotate {
+            -webkit-animation-name: boy-rotate;
+            -webkit-animation-duration: 850ms;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-timing-function: step-start;
+            -webkit-animation-fill-mode: forwards;
+            -moz-animation-name: boy-rotate;
+            -moz-animation-duration: 850ms;
+            -moz-animation-iteration-count: 1;
+            -moz-animation-timing-function: step-start;
+            -moz-animation-fill-mode: forwards;
+        }
+
+        @-webkit-keyframes boy-rotate {
+            0% {
+                background-position: -603px -291px;
+            }
+            16.7% {
+                background-position: -150px -0px;
+            }
+            33.4% {
+                background-position: -453px -291px;
+            }
+            50.1% {
+                background-position: -0px -0px;
+            }
+            66.8% {
+                background-position: -903px -291px;
+            }
+            83.5% {
+                background-position: -753px -291px;
+            }
+            100% {
+                background-position: -603px -291px;
+            }
+        }
+
+        @-moz-keyframes boy-rotate {
+            0% {
+                /*background-position: -603px -291px;*/
+            }
+            16.7% {
+                background-position: -150px -0px;
+            }
+            33.4% {
+                background-position: -453px -291px;
+            }
+            50.1% {
+                background-position: -0px -0px;
+            }
+            66.8% {
+                background-position: -903px -291px;
+            }
+            83.5% {
+                background-position: -753px -291px;
+            }
+            100% {
+                background-position: -603px -291px;
+            }
+        }
 
 
-	</style>
-	<!-- animation -->
-	<style type="text/css">
-	
-	</style>
+    </style>
+    <!-- animation -->
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
-	<div id="content">
-		<ul class="content-wrap">
-			<li>
-				<div class="a_background">
-					<div class="a_background_top"></div>
-					<div class="a_background_middle"></div>
-					<div class="a_background_botton"></div>
-				</div>
-				     <!-- 云 -->
-                <div class="cloudArea">
-                    <div class="cloud cloud1"></div>
-                    <div class="cloud cloud2"></div>
+<div id="content">
+    <ul class="content-wrap">
+        <li>
+            <div class="a_background">
+                <div class="a_background_top"></div>
+                <div class="a_background_middle"></div>
+                <div class="a_background_botton"></div>
+            </div>
+            <!-- 云 -->
+            <div class="cloudArea">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+            </div>
+            <div id="sun"></div>
+        </li>
+        <!-- 第二副画面 -->
+        <li>
+            <!-- 背景图 -->
+            <div class="b_background"></div>
+            <div class="b_background_preload"></div>
+            <!-- 商店 -->
+            <div class="shop">
+                <div class="door">
+                    <div class="door-left"></div>
+                    <div class="door-right"></div>
                 </div>
-				 <div id="sun"></div>
-			</li>
-			 <!-- 第二副画面 -->
-            <li>
-                <!-- 背景图 -->
-                <div class="b_background"></div>
-                <div class="b_background_preload"></div>
-                <!-- 商店 -->
-                <div class="shop">
-                    <div class="door">
-                        <div class="door-left"></div>
-                        <div class="door-right"></div>
-                    </div>
-                    <!-- 灯 -->
-                    <div class="lamp"></div>
-                    
+                <!-- 灯 -->
+                <div class="lamp"></div>
+
+            </div>
+            <div class="bird"></div>
+        </li>
+        <!-- 第三副画面 -->
+        <li>
+            <!-- 背景图 -->
+            <div class="c_background">
+                <div class="c_background_top"></div>
+                <div class="c_background_middle"></div>
+                <div class="c_background_botton"></div>
+            </div>
+            <!-- 小女孩 -->
+            <div class="girl"></div>
+            <!-- 水波 -->
+            <div class="bridge-bottom">
+                <div class="water">
+                    <div id="water1" class="water_1"></div>
+                    <div id="water2" class="water_2"></div>
+                    <div id="water3" class="water_3"></div>
+                    <div id="water4" class="water_4"></div>
                 </div>
-                <div class="bird"></div>
-            </li>
-			 <!-- 第三副画面 -->
-            <li>
-                <!-- 背景图 -->
-                <div class="c_background">
-                    <div class="c_background_top"></div>
-                    <div class="c_background_middle"></div>
-                    <div class="c_background_botton"></div>
-                </div>
-                <!-- 小女孩 -->
-                <div class="girl"></div>
-                <!-- 水波 -->
-                <div class="bridge-bottom">
-                    <div class="water">
-                        <div id="water1" class="water_1"></div>
-                        <div id="water2" class="water_2"></div>
-                        <div id="water3" class="water_3"></div>
-                        <div id="water4" class="water_4"></div>
-                    </div>
-                </div>
-                <!-- 星星 -->
-                <ul class="stars">
-                    <li class="stars1"></li>
-                    <li class="stars2"></li>
-                    <li class="stars3"></li>
-                    <li class="stars4"></li>
-                    <li class="stars5"></li>
-                    <li class="stars6"></li>
-                </ul>
-                 <div class="logo"></div>
-            </li>
-		</ul>
-		  <!-- 飘花 -->
-        <div id="snowflake"></div>
-		<div id="boy" class="charector"></div>
-	</div>
-	<audio src="https://music.163.com/song/media/outer/url?id=28481582.mp3" autoplay="ture"></audio>
-	<!-- index.js -->
-	<script type="text/javascript">
-		$(function(){
-            // var audio = new Audio("http://y.qq.com/#type=song&id=203449796");
-            // audio.play();
-	        var container = $("#content");
-            var swipe = Swipe(container);
-            function scrollTo(time,proportionX) {
-            	var distX = container.width()*proportionX;
-            	swipe.scrollTo(distX, time);
+            </div>
+            <!-- 星星 -->
+            <ul class="stars">
+                <li class="stars1"></li>
+                <li class="stars2"></li>
+                <li class="stars3"></li>
+                <li class="stars4"></li>
+                <li class="stars5"></li>
+                <li class="stars6"></li>
+            </ul>
+            <div class="logo"></div>
+        </li>
+    </ul>
+    <!-- 飘花 -->
+    <div id="snowflake"></div>
+    <div id="boy" class="charector"></div>
+</div>
+<!--<audio src="https://music.163.com/song/media/outer/url?id=28481582.mp3" autoplay="ture" loop="loop"></audio>-->
+<audio controls="controls" autoplay="ture" loop="loop">
+    <source src="https://music.163.com/song/media/outer/url?id=28481582.mp3"
+            type="audio/mpeg">
+    <embed src="https://music.163.com/song/media/outer/url?id=28481582.mp3">
+</audio>
+<!-- index.js -->
+<script type="text/javascript">
+    $(function () {
+        // var audio = new Audio("http://y.qq.com/#type=song&id=203449796");
+        // audio.play();
+        var container = $("#content");
+        var swipe = Swipe(container);
+
+        function scrollTo(time, proportionX) {
+            var distX = container.width() * proportionX;
+            swipe.scrollTo(distX, time);
+        }
+
+        var boy = BoyWalk();
+        // 太阳降落
+        $("#sun").addClass('rotation');
+        // 飘云
+
+        $(".cloud:first").addClass('cloud1Anim');
+        $(".cloud:last").addClass('cloud2Anim');
+        var bridgeY = $('.c_background_middle').position().top;
+        var girl = {
+            elem: $('.girl'),
+            getHeight: function () {
+                return this.elem.height();
+            },
+            // 转身动作
+            rotate: function () {
+                this.elem.addClass('girl-rotate');
+            },
+            setOffset: function () {
+                this.elem.css({
+                    left: visualWidth / 2,
+                    top: bridgeY - this.getHeight()
+                });
+            },
+            getOffset: function () {
+                return this.elem.offset();
+            },
+            getWidth: function () {
+                return this.elem.width();
             }
-            var boy = BoyWalk();
-            // 太阳降落
-            $("#sun").addClass('rotation');
-             // 飘云
-             
-	        $(".cloud:first").addClass('cloud1Anim');
-	        $(".cloud:last").addClass('cloud2Anim');
-	        var bridgeY = $('.c_background_middle').position().top;
-	        var girl = {
-		        elem: $('.girl'),
-		        getHeight: function() {
-		            return this.elem.height();
-		        },
-		        // 转身动作
-		        rotate: function() {
-		            this.elem.addClass('girl-rotate');
-		        },
-		        setOffset: function() {
-		            this.elem.css({
-		                left: visualWidth / 2,
-		                top: bridgeY - this.getHeight()
-		            });
-		        },
-		        getOffset: function() {
-		            return this.elem.offset();
-		        },
-		        getWidth: function() {
-		            return this.elem.width();
-		        }
-		    };
-		      var logo = {
-			        elem: $('.logo'),
-			        run: function() {
-			            this.elem.addClass('logolightSpeedIn')
-			                .on(animationEnd, function() {
-			                    $(this).addClass('logoshake').off();
-			                });
-			        }
-			    };
-              // 修正小女孩位置
-            girl.setOffset();
-	        var snowflakeURl = [
-			        'http://img.mukewang.com/55adde120001d34e00410041.png',
-			        'http://img.mukewang.com/55adde2a0001a91d00410041.png',
-			        'http://img.mukewang.com/55adde5500013b2500400041.png',
-			        'http://img.mukewang.com/55adde62000161c100410041.png',
-			        'http://img.mukewang.com/55adde7f0001433000410041.png',
-			        'http://img.mukewang.com/55addee7000117b500400041.png'
-			]
+        };
+        var logo = {
+            elem: $('.logo'),
+            run: function () {
+                this.elem.addClass('logolightSpeedIn')
+                    .on(animationEnd, function () {
+                        $(this).addClass('logoshake').off();
+                    });
+            }
+        };
+        // 修正小女孩位置
+        girl.setOffset();
+        var snowflakeURl = [
+            'http://img.mukewang.com/55adde120001d34e00410041.png',
+            'http://img.mukewang.com/55adde2a0001a91d00410041.png',
+            'http://img.mukewang.com/55adde5500013b2500400041.png',
+            'http://img.mukewang.com/55adde62000161c100410041.png',
+            'http://img.mukewang.com/55adde7f0001433000410041.png',
+            'http://img.mukewang.com/55addee7000117b500400041.png'
+        ]
 
-			    ///////
-			    //飘雪花 //
-			    ///////
-			 function snowflake() {
-			        // 雪花容器
-			        var $flakeContainer = $('#snowflake');
+        ///////
+        //飘雪花 //
+        ///////
+        function snowflake() {
+            // 雪花容器
+            var $flakeContainer = $('#snowflake');
 
-			        // 随机六张图
-			        function getImagesName() {
-			            return snowflakeURl[[Math.floor(Math.random() * 6)]];
-			        }
-			        // 创建一个雪花元素
-			        function createSnowBox() {
-			            var url = getImagesName();
-			            return $('<div class="snowbox" />').css({
-			                'width': 41,
-			                'height': 41,
-			                'position': 'absolute',
-			                'backgroundSize': 'cover',
-			                'zIndex': 100000,
-			                'top': '-41px',
-			                'backgroundImage': 'url(' + url + ')'
-			            }).addClass('snowRoll');
-			    }
-			        // 开始飘花
-			     setInterval(function() {
-			            // 运动的轨迹
-			            var startPositionLeft = Math.random() * visualWidth - 100,
-			                startOpacity    = 1,
-			                endPositionTop  = visualHeight - 40,
-			                endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
-			                duration        = visualHeight * 10 + Math.random() * 5000;
+            // 随机六张图
+            function getImagesName() {
+                return snowflakeURl[[Math.floor(Math.random() * 6)]];
+            }
 
-			            // 随机透明度，不小于0.5
-			            var randomStart = Math.random();
-			            randomStart = randomStart < 0.5 ? startOpacity : randomStart;
+            // 创建一个雪花元素
+            function createSnowBox() {
+                var url = getImagesName();
+                return $('<div class="snowbox" />').css({
+                    'width': 41,
+                    'height': 41,
+                    'position': 'absolute',
+                    'backgroundSize': 'cover',
+                    'zIndex': 100000,
+                    'top': '-41px',
+                    'backgroundImage': 'url(' + url + ')'
+                }).addClass('snowRoll');
+            }
 
-			            // 创建一个雪花
-			            var $flake = createSnowBox();
+            // 开始飘花
+            setInterval(function () {
+                // 运动的轨迹
+                var startPositionLeft = Math.random() * visualWidth - 100,
+                    startOpacity = 1,
+                    endPositionTop = visualHeight - 40,
+                    endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+                    duration = visualHeight * 10 + Math.random() * 5000;
 
-			            // 设计起点位置
-			            $flake.css({
-			                left: startPositionLeft,
-			                opacity : randomStart
-			            });
+                // 随机透明度，不小于0.5
+                var randomStart = Math.random();
+                randomStart = randomStart < 0.5 ? startOpacity : randomStart;
 
-			            // 加入到容器
-			            $flakeContainer.append($flake);
+                // 创建一个雪花
+                var $flake = createSnowBox();
 
-			            // 开始执行动画
-			            $flake.transition({
-			                top: endPositionTop,
-			                left: endPositionLeft,
-			                opacity: 0.7
-			            }, duration, 'ease-out', function() {
-			                $(this).remove() //结束后删除
-			            });
-			            
-			        }, 200);
-			    }
+                // 设计起点位置
+                $flake.css({
+                    left: startPositionLeft,
+                    opacity: randomStart
+                });
+
+                // 加入到容器
+                $flakeContainer.append($flake);
+
+                // 开始执行动画
+                $flake.transition({
+                    top: endPositionTop,
+                    left: endPositionLeft,
+                    opacity: 0.7
+                }, duration, 'ease-out', function () {
+                    $(this).remove() //结束后删除
+                });
+
+            }, 200);
+        }
 
 
-             // 开始第一次走路
-             // scrollTo(0,2);
-             boy.walkTo(2000,0.2).then(function(){
-	             	scrollTo(5000,1);
-	             }).then(function() {
-	             	return boy.walkTo(5000,0.5);
-	             }).then(function() {
-	             	lamp.bright() ;
-			        fly();
-	             	return openDoor();
-	             }).then(function(){
-	                 return boy.toShop(2000);
-	             }).then(function(){
-	             	return talkFlower();
-	             }).then(function() {
-	             	return boy.outShop(2000)
-	             }).then(function() {
-	             	lamp.dark();
-	             	shutDoor();
-	             }).then(function(){
-	             	scrollTo(5000,2);
-	             	return boy.walkTo(5000,0.15);
-	             }).then(function(){
-	             	return boy.walkTo(1500,0.25,(bridgeY - girl.getHeight()) / visualHeight)
-	             }).then(function(){
-	             	 // 实际走路的比例
-	                var proportionX = (girl.getOffset().left - boy.getWidth() + girl.getWidth() / 5) / visualWidth;
-	                // 第三次桥上直走到小女孩面前
-	                return boy.walkTo(1500, proportionX);
-	             }).then(function(){
-	             	 boy.resetOriginal();
-	             }).then(function(){
+        // 开始第一次走路
+        // scrollTo(0,2);
+        boy.walkTo(2000, 0.2).then(function () {
+            scrollTo(5000, 1);
+        }).then(function () {
+            return boy.walkTo(5000, 0.5);
+        }).then(function () {
+            lamp.bright();
+            fly();
+            return openDoor();
+        }).then(function () {
+            return boy.toShop(2000);
+        }).then(function () {
+            return talkFlower();
+        }).then(function () {
+            return boy.outShop(2000)
+        }).then(function () {
+            lamp.dark();
+            shutDoor();
+        }).then(function () {
+            scrollTo(5000, 2);
+            return boy.walkTo(5000, 0.15);
+        }).then(function () {
+            return boy.walkTo(1500, 0.25, (bridgeY - girl.getHeight()) / visualHeight)
+        }).then(function () {
+            // 实际走路的比例
+            var proportionX = (girl.getOffset().left - boy.getWidth() + girl.getWidth() / 5) / visualWidth;
+            // 第三次桥上直走到小女孩面前
+            return boy.walkTo(1500, proportionX);
+        }).then(function () {
+            boy.resetOriginal();
+        }).then(function () {
 
-	             	  // 增加转身动作 
-		                setTimeout(function() {
-		                    girl.rotate();
-		                    boy.rotate(function() {
-		                      snowflake();
-		                       logo.run();
-		                    });
-		                }, 1000);
-	             });
-		});
-	</script>
+            // 增加转身动作
+            setTimeout(function () {
+                girl.rotate();
+                boy.rotate(function () {
+                    snowflake();
+                    logo.run();
+                });
+            }, 1000);
+        });
+    });
+</script>
 
-	
 
 </body>
 <script type="text/javascript">
-	 /*!
-         * jQuery Transit - CSS3 transitions and transformations
-         * (c) 2011-2014 Rico Sta. Cruz
-         * MIT Licensed.
-         *
-         * http://ricostacruz.com/jquery.transit
-         * http://github.com/rstacruz/jquery.transit
-         */
+    /*!
+        * jQuery Transit - CSS3 transitions and transformations
+        * (c) 2011-2014 Rico Sta. Cruz
+        * MIT Licensed.
+        *
+        * http://ricostacruz.com/jquery.transit
+        * http://github.com/rstacruz/jquery.transit
+        */
 
-        /* jshint expr: true */
+    /* jshint expr: true */
 
-        ;
-        (function(root, factory) {
+    ;
+    (function (root, factory) {
 
-            if (typeof define === 'function' && define.amd) {
-                define(['jquery'], factory);
-            } else if (typeof exports === 'object') {
-                module.exports = factory(require('jquery'));
-            } else {
-                factory(root.jQuery);
+        if (typeof define === 'function' && define.amd) {
+            define(['jquery'], factory);
+        } else if (typeof exports === 'object') {
+            module.exports = factory(require('jquery'));
+        } else {
+            factory(root.jQuery);
+        }
+
+    }(this, function ($) {
+
+        $.transit = {
+            version: "0.9.12",
+
+            // Map of $.css() keys to values for 'transitionProperty'.
+            // See https://developer.mozilla.org/en/CSS/CSS_transitions#Properties_that_can_be_animated
+            propertyMap: {
+                marginLeft: 'margin',
+                marginRight: 'margin',
+                marginBottom: 'margin',
+                marginTop: 'margin',
+                paddingLeft: 'padding',
+                paddingRight: 'padding',
+                paddingBottom: 'padding',
+                paddingTop: 'padding'
+            },
+
+            // Will simply transition "instantly" if false
+            enabled: true,
+
+            // Set this to false if you don't want to use the transition end property.
+            useTransitionEnd: false
+        };
+
+        var div = document.createElement('div');
+        var support = {};
+
+        function getVendorPropertyName(prop) {
+            // 是否支持标准
+            if (prop in div.style) return prop;
+            var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
+            var prop_ = prop.charAt(0).toUpperCase() + prop.substr(1);
+            //增加前缀
+            for (var i = 0; i < prefixes.length; ++i) {
+                var vendorProp = prefixes[i] + prop_;
+                if (vendorProp in div.style) {
+                    return vendorProp;
+                }
             }
+        }
 
-        }(this, function($) {
+        // Helper function to check if transform3D is supported.
+        // Should return true for Webkits and Firefox 10+.
+        function checkTransform3dSupport() {
+            div.style[support.transform] = '';
+            div.style[support.transform] = 'rotateY(90deg)';
+            return div.style[support.transform] !== '';
+        }
 
-            $.transit = {
-                version: "0.9.12",
+        var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 
-                // Map of $.css() keys to values for 'transitionProperty'.
-                // See https://developer.mozilla.org/en/CSS/CSS_transitions#Properties_that_can_be_animated
-                propertyMap: {
-                    marginLeft: 'margin',
-                    marginRight: 'margin',
-                    marginBottom: 'margin',
-                    marginTop: 'margin',
-                    paddingLeft: 'padding',
-                    paddingRight: 'padding',
-                    paddingBottom: 'padding',
-                    paddingTop: 'padding'
+        //检测浏览器transitions的支持情况
+        support.transition = getVendorPropertyName('transition');
+        support.transitionDelay = getVendorPropertyName('transitionDelay');
+        support.transform = getVendorPropertyName('transform');
+        support.transformOrigin = getVendorPropertyName('transformOrigin');
+        support.filter = getVendorPropertyName('Filter');
+        support.transform3d = checkTransform3dSupport();
+
+
+        var eventNames = {
+            'transition': 'transitionend',
+            'MozTransition': 'transitionend',
+            'OTransition': 'oTransitionEnd',
+            'WebkitTransition': 'webkitTransitionEnd',
+            'msTransition': 'MSTransitionEnd'
+        };
+
+        // 检测是否支持transitionend事件
+        var transitionEnd = support.transitionEnd = eventNames[support.transition] || null;
+
+        // Populate jQuery's `$.support` with the vendor prefixes we know.
+        // As per [jQuery's cssHooks documentation](http://api.jquery.com/jQuery.cssHooks/),
+        // we set $.support.transition to a string of the actual property name used.
+        for (var key in support) {
+            if (support.hasOwnProperty(key) && typeof $.support[key] === 'undefined') {
+                $.support[key] = support[key];
+            }
+        }
+
+        // Avoid memory leak in IE.
+        div = null;
+
+        // ## $.cssEase
+        // List of easing aliases that you can use with `$.fn.transition`.
+        $.cssEase = {
+            '_default': 'ease',
+            'in': 'ease-in',
+            'out': 'ease-out',
+            'in-out': 'ease-in-out',
+            'snap': 'cubic-bezier(0,1,.5,1)',
+            // Penner equations
+            'easeInCubic': 'cubic-bezier(.550,.055,.675,.190)',
+            'easeOutCubic': 'cubic-bezier(.215,.61,.355,1)',
+            'easeInOutCubic': 'cubic-bezier(.645,.045,.355,1)',
+            'easeInCirc': 'cubic-bezier(.6,.04,.98,.335)',
+            'easeOutCirc': 'cubic-bezier(.075,.82,.165,1)',
+            'easeInOutCirc': 'cubic-bezier(.785,.135,.15,.86)',
+            'easeInExpo': 'cubic-bezier(.95,.05,.795,.035)',
+            'easeOutExpo': 'cubic-bezier(.19,1,.22,1)',
+            'easeInOutExpo': 'cubic-bezier(1,0,0,1)',
+            'easeInQuad': 'cubic-bezier(.55,.085,.68,.53)',
+            'easeOutQuad': 'cubic-bezier(.25,.46,.45,.94)',
+            'easeInOutQuad': 'cubic-bezier(.455,.03,.515,.955)',
+            'easeInQuart': 'cubic-bezier(.895,.03,.685,.22)',
+            'easeOutQuart': 'cubic-bezier(.165,.84,.44,1)',
+            'easeInOutQuart': 'cubic-bezier(.77,0,.175,1)',
+            'easeInQuint': 'cubic-bezier(.755,.05,.855,.06)',
+            'easeOutQuint': 'cubic-bezier(.23,1,.32,1)',
+            'easeInOutQuint': 'cubic-bezier(.86,0,.07,1)',
+            'easeInSine': 'cubic-bezier(.47,0,.745,.715)',
+            'easeOutSine': 'cubic-bezier(.39,.575,.565,1)',
+            'easeInOutSine': 'cubic-bezier(.445,.05,.55,.95)',
+            'easeInBack': 'cubic-bezier(.6,-.28,.735,.045)',
+            'easeOutBack': 'cubic-bezier(.175, .885,.32,1.275)',
+            'easeInOutBack': 'cubic-bezier(.68,-.55,.265,1.55)'
+        };
+
+        // ## 'transform' CSS hook
+        // Allows you to use the `transform` property in CSS.
+        //
+        //     $("#hello").css({ transform: "rotate(90deg)" });
+        //
+        //     $("#hello").css('transform');
+        //     //=> { rotate: '90deg' }
+        //
+        $.cssHooks['transit:transform'] = {
+            // The getter returns a `Transform` object.
+            get: function (elem) {
+                return $(elem).data('transform') || new Transform();
+            },
+
+            // The setter accepts a `Transform` object or a string.
+            set: function (elem, v) {
+                var value = v;
+
+                if (!(value instanceof Transform)) {
+                    value = new Transform(value);
+                }
+
+                // We've seen the 3D version of Scale() not work in Chrome when the
+                // element being scaled extends outside of the viewport.  Thus, we're
+                // forcing Chrome to not use the 3d transforms as well.  Not sure if
+                // translate is affectede, but not risking it.  Detection code from
+                // http://davidwalsh.name/detecting-google-chrome-javascript
+                if (support.transform === 'WebkitTransform' && !isChrome) {
+                    elem.style[support.transform] = value.toString(true);
+                } else {
+                    elem.style[support.transform] = value.toString();
+                }
+
+                $(elem).data('transform', value);
+            }
+        };
+
+        // Add a CSS hook for `.css({ transform: '...' })`.
+        // In jQuery 1.8+, this will intentionally override the default `transform`
+        // CSS hook so it'll play well with Transit. (see issue #62)
+        $.cssHooks.transform = {
+            set: $.cssHooks['transit:transform'].set
+        };
+
+        // ## 'filter' CSS hook
+        // Allows you to use the `filter` property in CSS.
+        //
+        //     $("#hello").css({ filter: 'blur(10px)' });
+        //
+        $.cssHooks.filter = {
+            get: function (elem) {
+                return elem.style[support.filter];
+            },
+            set: function (elem, value) {
+                elem.style[support.filter] = value;
+            }
+        };
+
+        // jQuery 1.8+ supports prefix-free transitions, so these polyfills will not
+        // be necessary.
+        if ($.fn.jquery < "1.8") {
+            // ## 'transformOrigin' CSS hook
+            // Allows the use for `transformOrigin` to define where scaling and rotation
+            // is pivoted.
+            //
+            //     $("#hello").css({ transformOrigin: '0 0' });
+            //
+            $.cssHooks.transformOrigin = {
+                get: function (elem) {
+                    return elem.style[support.transformOrigin];
                 },
-
-                // Will simply transition "instantly" if false
-                enabled: true,
-
-                // Set this to false if you don't want to use the transition end property.
-                useTransitionEnd: false
-            };
-
-            var div = document.createElement('div');
-            var support = {};
-
-            function getVendorPropertyName(prop) {
-                // 是否支持标准
-                if (prop in div.style) return prop;
-                var prefixes = ['Moz', 'Webkit', 'O', 'ms'];
-                var prop_ = prop.charAt(0).toUpperCase() + prop.substr(1);
-                //增加前缀
-                for (var i = 0; i < prefixes.length; ++i) {
-                    var vendorProp = prefixes[i] + prop_;
-                    if (vendorProp in div.style) {
-                        return vendorProp;
-                    }
+                set: function (elem, value) {
+                    elem.style[support.transformOrigin] = value;
                 }
-            }
-
-            // Helper function to check if transform3D is supported.
-            // Should return true for Webkits and Firefox 10+.
-            function checkTransform3dSupport() {
-                div.style[support.transform] = '';
-                div.style[support.transform] = 'rotateY(90deg)';
-                return div.style[support.transform] !== '';
-            }
-
-            var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-
-            //检测浏览器transitions的支持情况
-            support.transition = getVendorPropertyName('transition');
-            support.transitionDelay = getVendorPropertyName('transitionDelay');
-            support.transform = getVendorPropertyName('transform');
-            support.transformOrigin = getVendorPropertyName('transformOrigin');
-            support.filter = getVendorPropertyName('Filter');
-            support.transform3d = checkTransform3dSupport();
-
-
-            var eventNames = {
-                'transition'       : 'transitionend',
-                'MozTransition'    : 'transitionend',
-                'OTransition'      : 'oTransitionEnd',
-                'WebkitTransition' : 'webkitTransitionEnd',
-                'msTransition'     : 'MSTransitionEnd'
             };
 
-            // 检测是否支持transitionend事件
-            var transitionEnd = support.transitionEnd = eventNames[support.transition] || null;
-
-            // Populate jQuery's `$.support` with the vendor prefixes we know.
-            // As per [jQuery's cssHooks documentation](http://api.jquery.com/jQuery.cssHooks/),
-            // we set $.support.transition to a string of the actual property name used.
-            for (var key in support) {
-                if (support.hasOwnProperty(key) && typeof $.support[key] === 'undefined') {
-                    $.support[key] = support[key];
-                }
-            }
-
-            // Avoid memory leak in IE.
-            div = null;
-
-            // ## $.cssEase
-            // List of easing aliases that you can use with `$.fn.transition`.
-            $.cssEase = {
-                '_default': 'ease',
-                'in': 'ease-in',
-                'out': 'ease-out',
-                'in-out': 'ease-in-out',
-                'snap': 'cubic-bezier(0,1,.5,1)',
-                // Penner equations
-                'easeInCubic': 'cubic-bezier(.550,.055,.675,.190)',
-                'easeOutCubic': 'cubic-bezier(.215,.61,.355,1)',
-                'easeInOutCubic': 'cubic-bezier(.645,.045,.355,1)',
-                'easeInCirc': 'cubic-bezier(.6,.04,.98,.335)',
-                'easeOutCirc': 'cubic-bezier(.075,.82,.165,1)',
-                'easeInOutCirc': 'cubic-bezier(.785,.135,.15,.86)',
-                'easeInExpo': 'cubic-bezier(.95,.05,.795,.035)',
-                'easeOutExpo': 'cubic-bezier(.19,1,.22,1)',
-                'easeInOutExpo': 'cubic-bezier(1,0,0,1)',
-                'easeInQuad': 'cubic-bezier(.55,.085,.68,.53)',
-                'easeOutQuad': 'cubic-bezier(.25,.46,.45,.94)',
-                'easeInOutQuad': 'cubic-bezier(.455,.03,.515,.955)',
-                'easeInQuart': 'cubic-bezier(.895,.03,.685,.22)',
-                'easeOutQuart': 'cubic-bezier(.165,.84,.44,1)',
-                'easeInOutQuart': 'cubic-bezier(.77,0,.175,1)',
-                'easeInQuint': 'cubic-bezier(.755,.05,.855,.06)',
-                'easeOutQuint': 'cubic-bezier(.23,1,.32,1)',
-                'easeInOutQuint': 'cubic-bezier(.86,0,.07,1)',
-                'easeInSine': 'cubic-bezier(.47,0,.745,.715)',
-                'easeOutSine': 'cubic-bezier(.39,.575,.565,1)',
-                'easeInOutSine': 'cubic-bezier(.445,.05,.55,.95)',
-                'easeInBack': 'cubic-bezier(.6,-.28,.735,.045)',
-                'easeOutBack': 'cubic-bezier(.175, .885,.32,1.275)',
-                'easeInOutBack': 'cubic-bezier(.68,-.55,.265,1.55)'
-            };
-
-            // ## 'transform' CSS hook
-            // Allows you to use the `transform` property in CSS.
+            // ## 'transition' CSS hook
+            // Allows you to use the `transition` property in CSS.
             //
-            //     $("#hello").css({ transform: "rotate(90deg)" });
+            //     $("#hello").css({ transition: 'all 0 ease 0' });
             //
-            //     $("#hello").css('transform');
-            //     //=> { rotate: '90deg' }
-            //
-            $.cssHooks['transit:transform'] = {
-                // The getter returns a `Transform` object.
-                get: function(elem) {
-                    return $(elem).data('transform') || new Transform();
+            $.cssHooks.transition = {
+                get: function (elem) {
+                    return elem.style[support.transition];
                 },
-
-                // The setter accepts a `Transform` object or a string.
-                set: function(elem, v) {
-                    var value = v;
-
-                    if (!(value instanceof Transform)) {
-                        value = new Transform(value);
-                    }
-
-                    // We've seen the 3D version of Scale() not work in Chrome when the
-                    // element being scaled extends outside of the viewport.  Thus, we're
-                    // forcing Chrome to not use the 3d transforms as well.  Not sure if
-                    // translate is affectede, but not risking it.  Detection code from
-                    // http://davidwalsh.name/detecting-google-chrome-javascript
-                    if (support.transform === 'WebkitTransform' && !isChrome) {
-                        elem.style[support.transform] = value.toString(true);
-                    } else {
-                        elem.style[support.transform] = value.toString();
-                    }
-
-                    $(elem).data('transform', value);
+                set: function (elem, value) {
+                    console.log(elem, value)
+                    elem.style[support.transition] = value;
                 }
             };
+        }
 
-            // Add a CSS hook for `.css({ transform: '...' })`.
-            // In jQuery 1.8+, this will intentionally override the default `transform`
-            // CSS hook so it'll play well with Transit. (see issue #62)
-            $.cssHooks.transform = {
-                set: $.cssHooks['transit:transform'].set
-            };
+        // ## Other CSS hooks
+        // Allows you to rotate, scale and translate.
+        registerCssHook('scale');
+        registerCssHook('scaleX');
+        registerCssHook('scaleY');
+        registerCssHook('translate');
+        registerCssHook('rotate');
+        registerCssHook('rotateX');
+        registerCssHook('rotateY');
+        registerCssHook('rotate3d');
+        registerCssHook('perspective');
+        registerCssHook('skewX');
+        registerCssHook('skewY');
+        registerCssHook('x', true);
+        registerCssHook('y', true);
 
-            // ## 'filter' CSS hook
-            // Allows you to use the `filter` property in CSS.
-            //
-            //     $("#hello").css({ filter: 'blur(10px)' });
-            //
-            $.cssHooks.filter = {
-                get: function(elem) {
-                    return elem.style[support.filter];
-                },
-                set: function(elem, value) {
-                    elem.style[support.filter] = value;
-                }
-            };
-
-            // jQuery 1.8+ supports prefix-free transitions, so these polyfills will not
-            // be necessary.
-            if ($.fn.jquery < "1.8") {
-                // ## 'transformOrigin' CSS hook
-                // Allows the use for `transformOrigin` to define where scaling and rotation
-                // is pivoted.
-                //
-                //     $("#hello").css({ transformOrigin: '0 0' });
-                //
-                $.cssHooks.transformOrigin = {
-                    get: function(elem) {
-                        return elem.style[support.transformOrigin];
-                    },
-                    set: function(elem, value) {
-                        elem.style[support.transformOrigin] = value;
-                    }
-                };
-
-                // ## 'transition' CSS hook
-                // Allows you to use the `transition` property in CSS.
-                //
-                //     $("#hello").css({ transition: 'all 0 ease 0' });
-                //
-                $.cssHooks.transition = {
-                    get: function(elem) {
-                        return elem.style[support.transition];
-                    },
-                    set: function(elem, value) {
-                      console.log(elem,value)
-                        elem.style[support.transition] = value;
-                    }
-                };
+        // ## Transform class
+        // This is the main class of a transformation property that powers
+        // `$.fn.css({ transform: '...' })`.
+        //
+        // This is, in essence, a dictionary object with key/values as `-transform`
+        // properties.
+        //
+        //     var t = new Transform("rotate(90) scale(4)");
+        //
+        //     t.rotate             //=> "90deg"
+        //     t.scale              //=> "4,4"
+        //
+        // Setters are accounted for.
+        //
+        //     t.set('rotate', 4)
+        //     t.rotate             //=> "4deg"
+        //
+        // Convert it to a CSS string using the `toString()` and `toString(true)` (for WebKit)
+        // functions.
+        //
+        //     t.toString()         //=> "rotate(90deg) scale(4,4)"
+        //     t.toString(true)     //=> "rotate(90deg) scale3d(4,4,0)" (WebKit version)
+        //
+        function Transform(str) {
+            if (typeof str === 'string') {
+                this.parse(str);
             }
+            return this;
+        }
 
-            // ## Other CSS hooks
-            // Allows you to rotate, scale and translate.
-            registerCssHook('scale');
-            registerCssHook('scaleX');
-            registerCssHook('scaleY');
-            registerCssHook('translate');
-            registerCssHook('rotate');
-            registerCssHook('rotateX');
-            registerCssHook('rotateY');
-            registerCssHook('rotate3d');
-            registerCssHook('perspective');
-            registerCssHook('skewX');
-            registerCssHook('skewY');
-            registerCssHook('x', true);
-            registerCssHook('y', true);
-
-            // ## Transform class
-            // This is the main class of a transformation property that powers
-            // `$.fn.css({ transform: '...' })`.
+        Transform.prototype = {
+            // ### setFromString()
+            // Sets a property from a string.
             //
-            // This is, in essence, a dictionary object with key/values as `-transform`
-            // properties.
+            //     t.setFromString('scale', '2,4');
+            //     // Same as set('scale', '2', '4');
             //
-            //     var t = new Transform("rotate(90) scale(4)");
-            //
-            //     t.rotate             //=> "90deg"
-            //     t.scale              //=> "4,4"
-            //
-            // Setters are accounted for.
-            //
-            //     t.set('rotate', 4)
-            //     t.rotate             //=> "4deg"
-            //
-            // Convert it to a CSS string using the `toString()` and `toString(true)` (for WebKit)
-            // functions.
-            //
-            //     t.toString()         //=> "rotate(90deg) scale(4,4)"
-            //     t.toString(true)     //=> "rotate(90deg) scale3d(4,4,0)" (WebKit version)
-            //
-            function Transform(str) {
-                if (typeof str === 'string') {
-                    this.parse(str);
-                }
-                return this;
-            }
-
-            Transform.prototype = {
-                // ### setFromString()
-                // Sets a property from a string.
-                //
-                //     t.setFromString('scale', '2,4');
-                //     // Same as set('scale', '2', '4');
-                //
-                setFromString: function(prop, val) {
-                    var args =
-                        (typeof val === 'string') ? val.split(',') :
+            setFromString: function (prop, val) {
+                var args =
+                    (typeof val === 'string') ? val.split(',') :
                         (val.constructor === Array) ? val : [val];
 
-                    args.unshift(prop);
+                args.unshift(prop);
 
-                    Transform.prototype.set.apply(this, args);
-                },
+                Transform.prototype.set.apply(this, args);
+            },
 
-                // ### set()
-                // Sets a property.
-                //
-                //     t.set('scale', 2, 4);
-                //
-                set: function(prop) {
-                    var args = Array.prototype.slice.apply(arguments, [1]);
-                    if (this.setter[prop]) {
-                        this.setter[prop].apply(this, args);
-                    } else {
-                        this[prop] = args.join(',');
-                    }
-                },
-
-                get: function(prop) {
-                    if (this.getter[prop]) {
-                        return this.getter[prop].apply(this);
-                    } else {
-                        return this[prop] || 0;
-                    }
-                },
-
-                setter: {
-                    // ### rotate
-                    //
-                    //     .css({ rotate: 30 })
-                    //     .css({ rotate: "30" })
-                    //     .css({ rotate: "30deg" })
-                    //     .css({ rotate: "30deg" })
-                    //
-                    rotate: function(theta) {
-                        this.rotate = unit(theta, 'deg');
-                    },
-
-                    rotateX: function(theta) {
-                        this.rotateX = unit(theta, 'deg');
-                    },
-
-                    rotateY: function(theta) {
-                        this.rotateY = unit(theta, 'deg');
-                    },
-
-                    // ### scale
-                    //
-                    //     .css({ scale: 9 })      //=> "scale(9,9)"
-                    //     .css({ scale: '3,2' })  //=> "scale(3,2)"
-                    //
-                    scale: function(x, y) {
-                        if (y === undefined) {
-                            y = x;
-                        }
-                        this.scale = x + "," + y;
-                    },
-
-                    // ### skewX + skewY
-                    skewX: function(x) {
-                        this.skewX = unit(x, 'deg');
-                    },
-
-                    skewY: function(y) {
-                        this.skewY = unit(y, 'deg');
-                    },
-
-                    // ### perspectvie
-                    perspective: function(dist) {
-                        this.perspective = unit(dist, 'px');
-                    },
-
-                    // ### x / y
-                    // Translations. Notice how this keeps the other value.
-                    //
-                    //     .css({ x: 4 })       //=> "translate(4px, 0)"
-                    //     .css({ y: 10 })      //=> "translate(4px, 10px)"
-                    //
-                    x: function(x) {
-                        this.set('translate', x, null);
-                    },
-
-                    y: function(y) {
-                        this.set('translate', null, y);
-                    },
-
-                    // ### translate
-                    // Notice how this keeps the other value.
-                    //
-                    //     .css({ translate: '2, 5' })    //=> "translate(2px, 5px)"
-                    //
-                    translate: function(x, y) {
-                        if (this._translateX === undefined) {
-                            this._translateX = 0;
-                        }
-                        if (this._translateY === undefined) {
-                            this._translateY = 0;
-                        }
-
-                        if (x !== null && x !== undefined) {
-                            this._translateX = unit(x, 'px');
-                        }
-                        if (y !== null && y !== undefined) {
-                            this._translateY = unit(y, 'px');
-                        }
-
-                        this.translate = this._translateX + "," + this._translateY;
-                    }
-                },
-
-                getter: {
-                    x: function() {
-                        return this._translateX || 0;
-                    },
-
-                    y: function() {
-                        return this._translateY || 0;
-                    },
-
-                    scale: function() {
-                        var s = (this.scale || "1,1").split(',');
-                        if (s[0]) {
-                            s[0] = parseFloat(s[0]);
-                        }
-                        if (s[1]) {
-                            s[1] = parseFloat(s[1]);
-                        }
-
-                        // "2.5,2.5" => 2.5
-                        // "2.5,1" => [2.5,1]
-                        return (s[0] === s[1]) ? s[0] : s;
-                    },
-
-                    rotate3d: function() {
-                        var s = (this.rotate3d || "0,0,0,0deg").split(',');
-                        for (var i = 0; i <= 3; ++i) {
-                            if (s[i]) {
-                                s[i] = parseFloat(s[i]);
-                            }
-                        }
-                        if (s[3]) {
-                            s[3] = unit(s[3], 'deg');
-                        }
-
-                        return s;
-                    }
-                },
-
-                // ### parse()
-                // Parses from a string. Called on constructor.
-                parse: function(str) {
-                    var self = this;
-                    str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function(x, prop, val) {
-                        self.setFromString(prop, val);
-                    });
-                },
-
-                // ### toString()
-                // Converts to a `transition` CSS property string. If `use3d` is given,
-                // it converts to a `-webkit-transition` CSS property string instead.
-                toString: function(use3d) {
-                    var re = [];
-
-                    for (var i in this) {
-                        if (this.hasOwnProperty(i)) {
-                            // Don't use 3D transformations if the browser can't support it.
-                            if ((!support.transform3d) && (
-                                    (i === 'rotateX') ||
-                                    (i === 'rotateY') ||
-                                    (i === 'perspective') ||
-                                    (i === 'transformOrigin'))) {
-                                continue;
-                            }
-
-                            if (i[0] !== '_') {
-                                if (use3d && (i === 'scale')) {
-                                    re.push(i + "3d(" + this[i] + ",1)");
-                                } else if (use3d && (i === 'translate')) {
-                                    re.push(i + "3d(" + this[i] + ",0)");
-                                } else {
-                                    re.push(i + "(" + this[i] + ")");
-                                }
-                            }
-                        }
-                    }
-
-                    return re.join(" ");
-                }
-            };
-
-            function callOrQueue(self, queue, fn) {
-                if (queue === true) {
-                    self.queue(fn);
-                } else if (queue) {
-                    self.queue(queue, fn);
+            // ### set()
+            // Sets a property.
+            //
+            //     t.set('scale', 2, 4);
+            //
+            set: function (prop) {
+                var args = Array.prototype.slice.apply(arguments, [1]);
+                if (this.setter[prop]) {
+                    this.setter[prop].apply(this, args);
                 } else {
-                    self.each(function() {
-                        fn.call(this);
-                    });
+                    this[prop] = args.join(',');
                 }
-            }
+            },
 
-            // ### getProperties(dict)
-            // Returns properties (for `transition-property`) for dictionary `props`. The
-            // value of `props` is what you would expect in `$.css(...)`.
-            function getProperties(props) {
+            get: function (prop) {
+                if (this.getter[prop]) {
+                    return this.getter[prop].apply(this);
+                } else {
+                    return this[prop] || 0;
+                }
+            },
+
+            setter: {
+                // ### rotate
+                //
+                //     .css({ rotate: 30 })
+                //     .css({ rotate: "30" })
+                //     .css({ rotate: "30deg" })
+                //     .css({ rotate: "30deg" })
+                //
+                rotate: function (theta) {
+                    this.rotate = unit(theta, 'deg');
+                },
+
+                rotateX: function (theta) {
+                    this.rotateX = unit(theta, 'deg');
+                },
+
+                rotateY: function (theta) {
+                    this.rotateY = unit(theta, 'deg');
+                },
+
+                // ### scale
+                //
+                //     .css({ scale: 9 })      //=> "scale(9,9)"
+                //     .css({ scale: '3,2' })  //=> "scale(3,2)"
+                //
+                scale: function (x, y) {
+                    if (y === undefined) {
+                        y = x;
+                    }
+                    this.scale = x + "," + y;
+                },
+
+                // ### skewX + skewY
+                skewX: function (x) {
+                    this.skewX = unit(x, 'deg');
+                },
+
+                skewY: function (y) {
+                    this.skewY = unit(y, 'deg');
+                },
+
+                // ### perspectvie
+                perspective: function (dist) {
+                    this.perspective = unit(dist, 'px');
+                },
+
+                // ### x / y
+                // Translations. Notice how this keeps the other value.
+                //
+                //     .css({ x: 4 })       //=> "translate(4px, 0)"
+                //     .css({ y: 10 })      //=> "translate(4px, 10px)"
+                //
+                x: function (x) {
+                    this.set('translate', x, null);
+                },
+
+                y: function (y) {
+                    this.set('translate', null, y);
+                },
+
+                // ### translate
+                // Notice how this keeps the other value.
+                //
+                //     .css({ translate: '2, 5' })    //=> "translate(2px, 5px)"
+                //
+                translate: function (x, y) {
+                    if (this._translateX === undefined) {
+                        this._translateX = 0;
+                    }
+                    if (this._translateY === undefined) {
+                        this._translateY = 0;
+                    }
+
+                    if (x !== null && x !== undefined) {
+                        this._translateX = unit(x, 'px');
+                    }
+                    if (y !== null && y !== undefined) {
+                        this._translateY = unit(y, 'px');
+                    }
+
+                    this.translate = this._translateX + "," + this._translateY;
+                }
+            },
+
+            getter: {
+                x: function () {
+                    return this._translateX || 0;
+                },
+
+                y: function () {
+                    return this._translateY || 0;
+                },
+
+                scale: function () {
+                    var s = (this.scale || "1,1").split(',');
+                    if (s[0]) {
+                        s[0] = parseFloat(s[0]);
+                    }
+                    if (s[1]) {
+                        s[1] = parseFloat(s[1]);
+                    }
+
+                    // "2.5,2.5" => 2.5
+                    // "2.5,1" => [2.5,1]
+                    return (s[0] === s[1]) ? s[0] : s;
+                },
+
+                rotate3d: function () {
+                    var s = (this.rotate3d || "0,0,0,0deg").split(',');
+                    for (var i = 0; i <= 3; ++i) {
+                        if (s[i]) {
+                            s[i] = parseFloat(s[i]);
+                        }
+                    }
+                    if (s[3]) {
+                        s[3] = unit(s[3], 'deg');
+                    }
+
+                    return s;
+                }
+            },
+
+            // ### parse()
+            // Parses from a string. Called on constructor.
+            parse: function (str) {
+                var self = this;
+                str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function (x, prop, val) {
+                    self.setFromString(prop, val);
+                });
+            },
+
+            // ### toString()
+            // Converts to a `transition` CSS property string. If `use3d` is given,
+            // it converts to a `-webkit-transition` CSS property string instead.
+            toString: function (use3d) {
                 var re = [];
 
-                $.each(props, function(key) {
-                    key = $.camelCase(key); // Convert "text-align" => "textAlign"
-                    key = $.transit.propertyMap[key] || $.cssProps[key] || key;
-                    key = uncamel(key); // Convert back to dasherized
+                for (var i in this) {
+                    if (this.hasOwnProperty(i)) {
+                        // Don't use 3D transformations if the browser can't support it.
+                        if ((!support.transform3d) && (
+                            (i === 'rotateX') ||
+                            (i === 'rotateY') ||
+                            (i === 'perspective') ||
+                            (i === 'transformOrigin'))) {
+                            continue;
+                        }
 
-                    // Get vendor specify propertie
-                    if (support[key])
-                        key = uncamel(support[key]);
-
-                    if ($.inArray(key, re) === -1) {
-                        re.push(key);
+                        if (i[0] !== '_') {
+                            if (use3d && (i === 'scale')) {
+                                re.push(i + "3d(" + this[i] + ",1)");
+                            } else if (use3d && (i === 'translate')) {
+                                re.push(i + "3d(" + this[i] + ",0)");
+                            } else {
+                                re.push(i + "(" + this[i] + ")");
+                            }
+                        }
                     }
-                });
+                }
 
-                return re;
+                return re.join(" ");
+            }
+        };
+
+        function callOrQueue(self, queue, fn) {
+            if (queue === true) {
+                self.queue(fn);
+            } else if (queue) {
+                self.queue(queue, fn);
+            } else {
+                self.each(function () {
+                    fn.call(this);
+                });
+            }
+        }
+
+        // ### getProperties(dict)
+        // Returns properties (for `transition-property`) for dictionary `props`. The
+        // value of `props` is what you would expect in `$.css(...)`.
+        function getProperties(props) {
+            var re = [];
+
+            $.each(props, function (key) {
+                key = $.camelCase(key); // Convert "text-align" => "textAlign"
+                key = $.transit.propertyMap[key] || $.cssProps[key] || key;
+                key = uncamel(key); // Convert back to dasherized
+
+                // Get vendor specify propertie
+                if (support[key])
+                    key = uncamel(support[key]);
+
+                if ($.inArray(key, re) === -1) {
+                    re.push(key);
+                }
+            });
+
+            return re;
+        }
+
+        // ### getTransition()
+        // Returns the transition string to be used for the `transition` CSS property.
+        //
+        // Example:
+        //
+        //     getTransition({ opacity: 1, rotate: 30 }, 500, 'ease');
+        //     //=> 'opacity 500ms ease, -webkit-transform 500ms ease'
+        //
+        function getTransition(properties, duration, easing, delay) {
+            // Get the CSS properties needed.
+            var props = getProperties(properties);
+
+            // Account for aliases (`in` => `ease-in`).
+            if ($.cssEase[easing]) {
+                easing = $.cssEase[easing];
             }
 
-            // ### getTransition()
-            // Returns the transition string to be used for the `transition` CSS property.
-            //
-            // Example:
-            //
-            //     getTransition({ opacity: 1, rotate: 30 }, 500, 'ease');
-            //     //=> 'opacity 500ms ease, -webkit-transform 500ms ease'
-            //
-            function getTransition(properties, duration, easing, delay) {
-                // Get the CSS properties needed.
-                var props = getProperties(properties);
-
-                // Account for aliases (`in` => `ease-in`).
-                if ($.cssEase[easing]) {
-                    easing = $.cssEase[easing];
-                }
-
-                // Build the duration/easing/delay attributes for it.
-                var attribs = '' + toMS(duration) + ' ' + easing;
-                if (parseInt(delay, 10) > 0) {
-                    attribs += ' ' + toMS(delay);
-                }
-
-                // For more properties, add them this way:
-                // "margin 200ms ease, padding 200ms ease, ..."
-                var transitions = [];
-                $.each(props, function(i, name) {
-                    transitions.push(name + ' ' + attribs);
-                });
-
-                return transitions.join(', ');
+            // Build the duration/easing/delay attributes for it.
+            var attribs = '' + toMS(duration) + ' ' + easing;
+            if (parseInt(delay, 10) > 0) {
+                attribs += ' ' + toMS(delay);
             }
 
-            // ## $.fn.transition
-            // Works like $.fn.animate(), but uses CSS transitions.
-            //
-            //     $("...").transition({ opacity: 0.1, scale: 0.3 });
-            //
-            //     // Specific duration
-            //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500);
-            //
-            //     // With duration and easing
-            //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in');
-            //
-            //     // With callback
-            //     $("...").transition({ opacity: 0.1, scale: 0.3 }, function() { ... });
-            //
-            //     // With everything
-            //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in', function() { ... });
-            //
-            //     // Alternate syntax
-            //     $("...").transition({
-            //       opacity: 0.1,
-            //       duration: 200,
-            //       delay: 40,
-            //       easing: 'in',
-            //       complete: function() { /* ... */ }
-            //      });
-            //
-            $.fn.transition = $.fn.transit = function(properties, duration, easing, callback) {
-                var self = this;
-                var delay = 0;
-                var queue = true;
+            // For more properties, add them this way:
+            // "margin 200ms ease, padding 200ms ease, ..."
+            var transitions = [];
+            $.each(props, function (i, name) {
+                transitions.push(name + ' ' + attribs);
+            });
 
-                var theseProperties = $.extend(true, {}, properties);
+            return transitions.join(', ');
+        }
 
-                // Account for `.transition(properties, callback)`.
-                if (typeof duration === 'function') {
-                    callback = duration;
-                    duration = undefined;
-                }
+        // ## $.fn.transition
+        // Works like $.fn.animate(), but uses CSS transitions.
+        //
+        //     $("...").transition({ opacity: 0.1, scale: 0.3 });
+        //
+        //     // Specific duration
+        //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500);
+        //
+        //     // With duration and easing
+        //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in');
+        //
+        //     // With callback
+        //     $("...").transition({ opacity: 0.1, scale: 0.3 }, function() { ... });
+        //
+        //     // With everything
+        //     $("...").transition({ opacity: 0.1, scale: 0.3 }, 500, 'in', function() { ... });
+        //
+        //     // Alternate syntax
+        //     $("...").transition({
+        //       opacity: 0.1,
+        //       duration: 200,
+        //       delay: 40,
+        //       easing: 'in',
+        //       complete: function() { /* ... */ }
+        //      });
+        //
+        $.fn.transition = $.fn.transit = function (properties, duration, easing, callback) {
+            var self = this;
+            var delay = 0;
+            var queue = true;
 
-                // Account for `.transition(properties, options)`.
-                if (typeof duration === 'object') {
-                    easing = duration.easing;
-                    delay = duration.delay || 0;
-                    queue = typeof duration.queue === "undefined" ? true : duration.queue;
-                    callback = duration.complete;
-                    duration = duration.duration;
-                }
+            var theseProperties = $.extend(true, {}, properties);
 
-                // Account for `.transition(properties, duration, callback)`.
-                if (typeof easing === 'function') {
-                    callback = easing;
-                    easing = undefined;
-                }
+            // Account for `.transition(properties, callback)`.
+            if (typeof duration === 'function') {
+                callback = duration;
+                duration = undefined;
+            }
 
-                // Alternate syntax.
-                if (typeof theseProperties.easing !== 'undefined') {
-                    easing = theseProperties.easing;
-                    delete theseProperties.easing;
-                }
+            // Account for `.transition(properties, options)`.
+            if (typeof duration === 'object') {
+                easing = duration.easing;
+                delay = duration.delay || 0;
+                queue = typeof duration.queue === "undefined" ? true : duration.queue;
+                callback = duration.complete;
+                duration = duration.duration;
+            }
 
-                if (typeof theseProperties.duration !== 'undefined') {
-                    duration = theseProperties.duration;
-                    delete theseProperties.duration;
-                }
+            // Account for `.transition(properties, duration, callback)`.
+            if (typeof easing === 'function') {
+                callback = easing;
+                easing = undefined;
+            }
 
-                if (typeof theseProperties.complete !== 'undefined') {
-                    callback = theseProperties.complete;
-                    delete theseProperties.complete;
-                }
+            // Alternate syntax.
+            if (typeof theseProperties.easing !== 'undefined') {
+                easing = theseProperties.easing;
+                delete theseProperties.easing;
+            }
 
-                if (typeof theseProperties.queue !== 'undefined') {
-                    queue = theseProperties.queue;
-                    delete theseProperties.queue;
-                }
+            if (typeof theseProperties.duration !== 'undefined') {
+                duration = theseProperties.duration;
+                delete theseProperties.duration;
+            }
 
-                if (typeof theseProperties.delay !== 'undefined') {
-                    delay = theseProperties.delay;
-                    delete theseProperties.delay;
-                }
+            if (typeof theseProperties.complete !== 'undefined') {
+                callback = theseProperties.complete;
+                delete theseProperties.complete;
+            }
 
-                // Set defaults. (`400` duration, `ease` easing)
-                if (typeof duration === 'undefined') {
-                    duration = $.fx.speeds._default;
-                }
-                if (typeof easing === 'undefined') {
-                    easing = $.cssEase._default;
-                }
+            if (typeof theseProperties.queue !== 'undefined') {
+                queue = theseProperties.queue;
+                delete theseProperties.queue;
+            }
 
-                duration = toMS(duration);
+            if (typeof theseProperties.delay !== 'undefined') {
+                delay = theseProperties.delay;
+                delete theseProperties.delay;
+            }
 
-                // Build the `transition` property.
-                var transitionValue = getTransition(theseProperties, duration, easing, delay);
+            // Set defaults. (`400` duration, `ease` easing)
+            if (typeof duration === 'undefined') {
+                duration = $.fx.speeds._default;
+            }
+            if (typeof easing === 'undefined') {
+                easing = $.cssEase._default;
+            }
 
-                // Compute delay until callback.
-                // If this becomes 0, don't bother setting the transition property.
-                var work = $.transit.enabled && support.transition;
-                var i = work ? (parseInt(duration, 10) + parseInt(delay, 10)) : 0;
+            duration = toMS(duration);
 
-                // If there's nothing to do...
-                if (i === 0) {
-                    var fn = function(next) {
-                        self.css(theseProperties);
-                        if (callback) {
-                            callback.apply(self);
-                        }
-                        if (next) {
-                            next();
-                        }
-                    };
+            // Build the `transition` property.
+            var transitionValue = getTransition(theseProperties, duration, easing, delay);
 
-                    callOrQueue(self, queue, fn);
-                    return self;
-                }
+            // Compute delay until callback.
+            // If this becomes 0, don't bother setting the transition property.
+            var work = $.transit.enabled && support.transition;
+            var i = work ? (parseInt(duration, 10) + parseInt(delay, 10)) : 0;
 
-                // Save the old transitions of each element so we can restore it later.
-                var oldTransitions = {};
+            // If there's nothing to do...
+            if (i === 0) {
+                var fn = function (next) {
+                    self.css(theseProperties);
+                    if (callback) {
+                        callback.apply(self);
+                    }
+                    if (next) {
+                        next();
+                    }
+                };
 
-                var run = function(nextCall) {
-                    var bound = false;
+                callOrQueue(self, queue, fn);
+                return self;
+            }
 
-                    // Prepare the callback.
-                    var cb = function() {
-                        if (bound) {
-                            self.unbind(transitionEnd, cb);
-                        }
+            // Save the old transitions of each element so we can restore it later.
+            var oldTransitions = {};
 
-                        if (i > 0) {
-                            self.each(function() {
-                                this.style[support.transition] = (oldTransitions[this] || null);
-                            });
-                        }
+            var run = function (nextCall) {
+                var bound = false;
 
-                        if (typeof callback === 'function') {
-                            callback.apply(self);
-                        }
-                        if (typeof nextCall === 'function') {
-                            nextCall();
-                        }
-                    };
-
-                    if ((i > 0) && (transitionEnd) && ($.transit.useTransitionEnd)) {
-                        // Use the 'transitionend' event if it's available.
-                        bound = true;
-                        self.bind(transitionEnd, cb);
-                    } else {
-                        // Fallback to timers if the 'transitionend' event isn't supported.
-                        window.setTimeout(cb, i);
+                // Prepare the callback.
+                var cb = function () {
+                    if (bound) {
+                        self.unbind(transitionEnd, cb);
                     }
 
-                    // Apply transitions.
-                    self.each(function() {
-                        if (i > 0) {
-                            this.style[support.transition] = transitionValue;
-                        }
-                        $(this).css(theseProperties);
-                    });
-                };
-
-                // Defer running. This allows the browser to paint any pending CSS it hasn't
-                // painted yet before doing the transitions.
-                var deferredRun = function(next) {
-                    this.offsetWidth = this.offsetWidth; // force a repaint
-                    run(next);
-                };
-
-                // Use jQuery's fx queue.
-                callOrQueue(self, queue, deferredRun);
-
-                // Chainability.
-                return this;
-            };
-
-            function registerCssHook(prop, isPixels) {
-                // For certain properties, the 'px' should not be implied.
-                if (!isPixels) {
-                    $.cssNumber[prop] = true;
-                }
-
-                $.transit.propertyMap[prop] = support.transform;
-
-                $.cssHooks[prop] = {
-                    get: function(elem) {
-                        var t = $(elem).css('transit:transform');
-                        return t.get(prop);
-                    },
-
-                    set: function(elem, value) {
-                        var t = $(elem).css('transit:transform');
-                        t.setFromString(prop, value);
-
-                        $(elem).css({
-                            'transit:transform': t
+                    if (i > 0) {
+                        self.each(function () {
+                            this.style[support.transition] = (oldTransitions[this] || null);
                         });
                     }
+
+                    if (typeof callback === 'function') {
+                        callback.apply(self);
+                    }
+                    if (typeof nextCall === 'function') {
+                        nextCall();
+                    }
                 };
 
-            }
-
-            // ### uncamel(str)
-            // Converts a camelcase string to a dasherized string.
-            // (`marginLeft` => `margin-left`)
-            function uncamel(str) {
-                return str.replace(/([A-Z])/g, function(letter) {
-                    return '-' + letter.toLowerCase();
-                });
-            }
-
-            // ### unit(number, unit)
-            // Ensures that number `number` has a unit. If no unit is found, assume the
-            // default is `unit`.
-            //
-            //     unit(2, 'px')          //=> "2px"
-            //     unit("30deg", 'rad')   //=> "30deg"
-            //
-            function unit(i, units) {
-                if ((typeof i === "string") && (!i.match(/^[\-0-9\.]+$/))) {
-                    return i;
+                if ((i > 0) && (transitionEnd) && ($.transit.useTransitionEnd)) {
+                    // Use the 'transitionend' event if it's available.
+                    bound = true;
+                    self.bind(transitionEnd, cb);
                 } else {
-                    return "" + i + units;
-                }
-            }
-
-            // ### toMS(duration)
-            // Converts given `duration` to a millisecond string.
-            //
-            // toMS('fast') => $.fx.speeds[i] => "200ms"
-            // toMS('normal') //=> $.fx.speeds._default => "400ms"
-            // toMS(10) //=> '10ms'
-            // toMS('100ms') //=> '100ms'  
-            //
-            function toMS(duration) {
-                var i = duration;
-
-                // Allow string durations like 'fast' and 'slow', without overriding numeric values.
-                if (typeof i === 'string' && (!i.match(/^[\-0-9\.]+/))) {
-                    i = $.fx.speeds[i] || $.fx.speeds._default;
+                    // Fallback to timers if the 'transitionend' event isn't supported.
+                    window.setTimeout(cb, i);
                 }
 
-                return unit(i, 'ms');
+                // Apply transitions.
+                self.each(function () {
+                    if (i > 0) {
+                        this.style[support.transition] = transitionValue;
+                    }
+                    $(this).css(theseProperties);
+                });
+            };
+
+            // Defer running. This allows the browser to paint any pending CSS it hasn't
+            // painted yet before doing the transitions.
+            var deferredRun = function (next) {
+                this.offsetWidth = this.offsetWidth; // force a repaint
+                run(next);
+            };
+
+            // Use jQuery's fx queue.
+            callOrQueue(self, queue, deferredRun);
+
+            // Chainability.
+            return this;
+        };
+
+        function registerCssHook(prop, isPixels) {
+            // For certain properties, the 'px' should not be implied.
+            if (!isPixels) {
+                $.cssNumber[prop] = true;
             }
 
-            // Export some functions for testable-ness.
-            $.transit.getTransitionValue = getTransition;
+            $.transit.propertyMap[prop] = support.transform;
 
-            return $;
-        }));
+            $.cssHooks[prop] = {
+                get: function (elem) {
+                    var t = $(elem).css('transit:transform');
+                    return t.get(prop);
+                },
+
+                set: function (elem, value) {
+                    var t = $(elem).css('transit:transform');
+                    t.setFromString(prop, value);
+
+                    $(elem).css({
+                        'transit:transform': t
+                    });
+                }
+            };
+
+        }
+
+        // ### uncamel(str)
+        // Converts a camelcase string to a dasherized string.
+        // (`marginLeft` => `margin-left`)
+        function uncamel(str) {
+            return str.replace(/([A-Z])/g, function (letter) {
+                return '-' + letter.toLowerCase();
+            });
+        }
+
+        // ### unit(number, unit)
+        // Ensures that number `number` has a unit. If no unit is found, assume the
+        // default is `unit`.
+        //
+        //     unit(2, 'px')          //=> "2px"
+        //     unit("30deg", 'rad')   //=> "30deg"
+        //
+        function unit(i, units) {
+            if ((typeof i === "string") && (!i.match(/^[\-0-9\.]+$/))) {
+                return i;
+            } else {
+                return "" + i + units;
+            }
+        }
+
+        // ### toMS(duration)
+        // Converts given `duration` to a millisecond string.
+        //
+        // toMS('fast') => $.fx.speeds[i] => "200ms"
+        // toMS('normal') //=> $.fx.speeds._default => "400ms"
+        // toMS(10) //=> '10ms'
+        // toMS('100ms') //=> '100ms'
+        //
+        function toMS(duration) {
+            var i = duration;
+
+            // Allow string durations like 'fast' and 'slow', without overriding numeric values.
+            if (typeof i === 'string' && (!i.match(/^[\-0-9\.]+/))) {
+                i = $.fx.speeds[i] || $.fx.speeds._default;
+            }
+
+            return unit(i, 'ms');
+        }
+
+        // Export some functions for testable-ness.
+        $.transit.getTransitionValue = getTransition;
+
+        return $;
+    }));
 </script>
 <!-- BoyWalw.js  -->
 <script type="text/javascript">
-	// 动画结束事件
-       var animationEnd = (function() {
-           var explorer = navigator.userAgent;
-           if (~explorer.indexOf('WebKit')) {
-               return 'webkitAnimationEnd';
-           }
-           return 'animationend';
-       })();
+    // 动画结束事件
+    var animationEnd = (function () {
+        var explorer = navigator.userAgent;
+        if (~explorer.indexOf('WebKit')) {
+            return 'webkitAnimationEnd';
+        }
+        return 'animationend';
+    })();
 
-	var container = $("#content");
-	//获得页面可视区域
-	var visualWidth = container.width();
-	var visualHeight = container.height();
-	     // 桥的Y轴
-	//获取指定区域的高度和top值
-	var getValue = function(className){
-		var $elem = $('' + className + '');
-		return {
-			height: $elem.height(),
-			top: $elem.position().top
-		};
+    var container = $("#content");
+    //获得页面可视区域
+    var visualWidth = container.width();
+    var visualHeight = container.height();
+    // 桥的Y轴
+    //获取指定区域的高度和top值
+    var getValue = function (className) {
+        var $elem = $('' + className + '');
+        return {
+            height: $elem.height(),
+            top: $elem.position().top
+        };
     }
 
     var lamp = {
         elem: $('.b_background'),
-        bright: function() {
+        bright: function () {
             this.elem.addClass('lamp-bright');
         },
-        dark: function() {
+        dark: function () {
             this.elem.removeClass('lamp-bright');
         }
     };
-          // 取花
-	function talkFlower() {
-            // 增加延时等待效果
-            var dtd = $.Deferred();
-            setTimeout(function() {
-                // 取花
-                $("#boy").addClass('slowFlolerWalk');
-                dtd.resolve();
-            }, 2000);
-            return dtd;
-	}
-	function fly() {
-             $(".bird").addClass('birdFly')
-             $(".bird").transition({
-                right: $('#content').width()
-            }, 15000, 'linear');
-	}
 
-	function doorAction(left, right, time) {
+    // 取花
+    function talkFlower() {
+        // 增加延时等待效果
+        var dtd = $.Deferred();
+        setTimeout(function () {
+            // 取花
+            $("#boy").addClass('slowFlolerWalk');
+            dtd.resolve();
+        }, 2000);
+        return dtd;
+    }
+
+    function fly() {
+        $(".bird").addClass('birdFly')
+        $(".bird").transition({
+            right: $('#content').width()
+        }, 15000, 'linear');
+    }
+
+    function doorAction(left, right, time) {
         var $door = $('.door');
         var doorLeft = $('.door-left');
         var doorRight = $('.door-right');
@@ -1976,16 +2019,17 @@
         // 等待开门完成
         doorLeft.transition({
             'left': left
-        }, time,function() {
-                dtd.resolve(); // 改变Deferred对象的执行状态
-            });
+        }, time, function () {
+            dtd.resolve(); // 改变Deferred对象的执行状态
+        });
         doorRight.transition({
             'left': right
-        }, time,function() {
-                dtd.resolve(); // 改变Deferred对象的执行状态
-            });
-         return dtd;
+        }, time, function () {
+            dtd.resolve(); // 改变Deferred对象的执行状态
+        });
+        return dtd;
     }
+
     // 开门
     function openDoor() {
         return doorAction('-50%', '100%', 2000);
@@ -1995,59 +2039,61 @@
     function shutDoor() {
         return doorAction('0%', '50%', 2000);
     }
-	function BoyWalk() {
-	    //获取路的中间距离顶部高度
-	    var pathY = function() {
-	    	var data = getValue('.a_background_middle');
-		    return data.top + data.height/2;
-	    }();
 
-	    var $boy = $("#boy");
-	    var boyWidth = $boy.width();
-	    var boyHeight = $boy.height();
+    function BoyWalk() {
+        //获取路的中间距离顶部高度
+        var pathY = function () {
+            var data = getValue('.a_background_middle');
+            return data.top + data.height / 2;
+        }();
 
-	    //修正小男孩的正确位置
-	    $boy.css({
-			top:pathY - boyHeight +25
-		});
-		//暂定走路
-		function pauseWalk() {
-	        $boy.addClass('pauseWalk');
-	    }
+        var $boy = $("#boy");
+        var boyWidth = $boy.width();
+        var boyHeight = $boy.height();
 
-	    // 恢复走路
-	    function restoreWalk() {
-	        $boy.removeClass('pauseWalk');
-	    }
+        //修正小男孩的正确位置
+        $boy.css({
+            top: pathY - boyHeight + 25
+        });
+
+        //暂定走路
+        function pauseWalk() {
+            $boy.addClass('pauseWalk');
+        }
+
+        // 恢复走路
+        function restoreWalk() {
+            $boy.removeClass('pauseWalk');
+        }
 
         function slowWalk() {
-	        $boy.addClass('slowWalk');
-	    }
+            $boy.addClass('slowWalk');
+        }
 
-	    // 用transition做运动
-	    function stratRun(options, runTime) {
-	        var dfdPlay = $.Deferred();
-	        // 恢复走路
-	        restoreWalk();
-	        // 运动的属性
-	        $boy.transition(options,runTime,'linear',function() {
-	                dfdPlay.resolve(); // 动画完成
-	            });
-	        return dfdPlay;
-	    }
+        // 用transition做运动
+        function stratRun(options, runTime) {
+            var dfdPlay = $.Deferred();
+            // 恢复走路
+            restoreWalk();
+            // 运动的属性
+            $boy.transition(options, runTime, 'linear', function () {
+                dfdPlay.resolve(); // 动画完成
+            });
+            return dfdPlay;
+        }
 
-			        // 开始走路
-	    function walkRun(time, dist, disY) {
-	        time = time || 3000;
-	        // 脚动作
-	        slowWalk();
-	        // 开始走路
-	        var d1 = stratRun({
-	            'left': dist + 'px',
-	            'top': disY ? disY : undefined
-	        }, time);
-	        return d1;
-	    }
+        // 开始走路
+        function walkRun(time, dist, disY) {
+            time = time || 3000;
+            // 脚动作
+            slowWalk();
+            // 开始走路
+            var d1 = stratRun({
+                'left': dist + 'px',
+                'top': disY ? disY : undefined
+            }, time);
+            return d1;
+        }
 
 
         // 走进商店
@@ -2058,7 +2104,7 @@
             var offsetDoor = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
             // 小孩当前的坐标
-            var offsetBoy     = $boy.offset();
+            var offsetBoy = $boy.offset();
             var boyOffetLeft = offsetBoy.left;
 
             // 当前需要移动的坐标
@@ -2070,7 +2116,7 @@
                 opacity: 0.1
             }, 2000);
             // 走路完毕
-            walkPlay.done(function() {
+            walkPlay.done(function () {
                 $boy.css({
                     opacity: 0
                 })
@@ -2086,74 +2132,74 @@
             //开始走路
             var walkPlay = stratRun({
                 transform: 'translateX(' + instanceX + 'px),scale(1,1)',
-               opacity: 1
+                opacity: 1
             }, runTime);
             //走路完毕
-            walkPlay.done(function() {
+            walkPlay.done(function () {
                 defer.resolve();
             });
-            return defer;      
+            return defer;
         }
 
-	    // 计算移动距离
-	    function calculateDist(direction, proportion) {
-	        return (direction == "x" ?
-	            visualWidth : visualHeight) * proportion;
-	    }
+        // 计算移动距离
+        function calculateDist(direction, proportion) {
+            return (direction == "x" ?
+                visualWidth : visualHeight) * proportion;
+        }
 
-	    return {
-	        // 开始走路
-	        walkTo: function(time, proportionX, proportionY) {
-	            var distX = calculateDist('x', proportionX)
-	            var distY = calculateDist('y', proportionY)
-	            return walkRun(time, distX, distY);
-	        },
-	          // 走进商店
-            toShop: function() {
+        return {
+            // 开始走路
+            walkTo: function (time, proportionX, proportionY) {
+                var distX = calculateDist('x', proportionX)
+                var distY = calculateDist('y', proportionY)
+                return walkRun(time, distX, distY);
+            },
+            // 走进商店
+            toShop: function () {
                 return walkToShop.apply(null, arguments);
             },
             // 走出商店
-            outShop: function() {
-            	// 修正小女孩的位置
+            outShop: function () {
+                // 修正小女孩的位置
                 return walkOutShop.apply(null, arguments);
             },
-	        // 停止走路
-	        stopWalk: function() {
-	            pauseWalk();
-	        },
-	        setColoer:function(value){
-	            $boy.css('background-color',value)
-	        },
-	          // 获取男孩的宽度
-            getWidth: function() {
+            // 停止走路
+            stopWalk: function () {
+                pauseWalk();
+            },
+            setColoer: function (value) {
+                $boy.css('background-color', value)
+            },
+            // 获取男孩的宽度
+            getWidth: function () {
                 return $boy.width();
             },
-              // 复位初始状态
-            resetOriginal: function() {
+            // 复位初始状态
+            resetOriginal: function () {
                 this.stopWalk();
                 // 恢复图片
                 $boy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal');
             },
-             // 转身动作
-           rotate: function(callback) {
-               restoreWalk();
-               $boy.addClass('boy-rotate');
-               // 监听转身完毕
-               if (callback) {
-                   $boy.on(animationEnd, function() {
-                       callback();
-                       $(this).off();
-                   })
-               }
-           },
+            // 转身动作
+            rotate: function (callback) {
+                restoreWalk();
+                $boy.addClass('boy-rotate');
+                // 监听转身完毕
+                if (callback) {
+                    $boy.on(animationEnd, function () {
+                        callback();
+                        $(this).off();
+                    })
+                }
+            },
 
-	    }
+        }
 
-	}
+    }
 </script>
 <!-- swipe.js -->
 <script type="text/javascript">
-	function Swipe(container){
+    function Swipe(container) {
         var element = container.find(":first");
         var swipe = {};
         var slides = element.find(">");
@@ -2162,28 +2208,28 @@
         var height = container.height();
 
         element.css({
-        	width : (slides.length * width),
-        	height : height + 'px'
+            width: (slides.length * width),
+            height: height + 'px'
         });
-        $.each(slides,function(index){
-        	var slide = slides.eq(index);
-        	slide.css({
-        		width : width + 'px',
-        		height : height + 'px'
-        	});
+        $.each(slides, function (index) {
+            var slide = slides.eq(index);
+            slide.css({
+                width: width + 'px',
+                height: height + 'px'
+            });
         });
 
-        swipe.scrollTo = function(x,speed){
-        	element.css({
-        		'transition-timing-function' : 'linear',
-        		'transition-duration' : speed + 'ms',
-        		'transform' : 'translate3d(-'+ x +'px,0px,0px)'
-        	});
-        	return this;
+        swipe.scrollTo = function (x, speed) {
+            element.css({
+                'transition-timing-function': 'linear',
+                'transition-duration': speed + 'ms',
+                'transform': 'translate3d(-' + x + 'px,0px,0px)'
+            });
+            return this;
         };
         return swipe;
 
-	}
+    }
 </script>
 <!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width='100%' height='0%' src="//music.163.com/outchain/player?type=2&id=495848376&auto=1&height=66"></iframe>-->
 </html>
