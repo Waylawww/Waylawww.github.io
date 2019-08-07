@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JT</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 微软雅黑, 黑体, Times;
+            transition: background-color, 1s;
+        }
+
+        .box {
+            margin: 30px auto 0;
+            width: 80%;
+            max-width: 640px;
+            min-width: 420px;
+            background-color: #fff;
+            opacity: 0.8;
+            border-radius: 5px;
+            padding: 10px 40px 40px 40px;
+        }
+
+        .foot {
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        p {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            line-height: 1.5em;
+            height: 8em;
+        }
+
+        a {
+            height: 40px;
+        }
+
+        .foot {
+            margin-top: 10px;
+        }
+
+        .foot a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 40px;
+            letter-spacing: 0.2em;
+            height: 0.6em;
+        }
+
+        #get {
+            float: right;
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            text-align: center;
+            height: auto;
+            width: 6em;
+            margin-left: 0.3em;
+        }
+
+        #back {
+            float: left;
+            font-size: 24px;
+            letter-spacing: 0.1em;
+            text-align: center;
+            height: auto;
+            width: 6em;
+            margin-left: 0.3em;
+        }
+
+        .bdsharebuttonbox {
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h4>喝鸡汤</h4>
+    <hr/>
+    <p>
+        <span id="soupHead"></span><br/>
+        <span id="soupBody"></span>
+    </p>
+    <div class="bdsharebuttonbox">
+        <input id="back" type="button" value="返回">
+        <input id="get" type="button">
+    </div>
+</div>
+<div class="foot">
+    <footer style="text-align: center;">By汪显阳To陈琪</footer>
+</div>
+<script>
+    $("#back").click(
+        function () {
+            if (!!parent && typeof parent.hideJT == "function") {
+                parent.hideJT();
+            }
+        });
+
+    var chickenSoups = [
+        {
+            "blackChickenSoupID": 1,
+            "blackChickenSoupHead": "你全力做到的最好，",
+            "blackChickenSoupBody": "可能还不如别人的随便搞搞。"
+        },
+        {
+            "blackChickenSoupID": 2,
+            "blackChickenSoupHead": "失败并不可怕，",
+            "blackChickenSoupBody": "可怕的是你还相信这句话。"
+        },
+        {
+            "blackChickenSoupID": 3,
+            "blackChickenSoupHead": "你以为有钱人很快乐吗，",
+            "blackChickenSoupBody": "他们的快乐你根本想象不到。"
+        },
+        {
+            "blackChickenSoupID": 4,
+            "blackChickenSoupHead": "你们之所以喝鸡汤，",
+            "blackChickenSoupBody": "是因为肉被别人吃了。"
+        },
+        {
+            "blackChickenSoupID": 5,
+            "blackChickenSoupHead": "条条大路通罗马，",
+            "blackChickenSoupBody": "而有些人就生在罗马。"
+        },
+        {
+            "blackChickenSoupID": 6,
+            "blackChickenSoupHead": "别灰心，",
+            "blackChickenSoupBody": "人生就是这样起起落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落的。"
+        },
+        {
+            "blackChickenSoupID": 7,
+            "blackChickenSoupHead": "有人出现在你的生命里，",
+            "blackChickenSoupBody": "是为了告诉你，你真好骗。"
+        },
+        {
+            "blackChickenSoupID": 8,
+            "blackChickenSoupHead": "比一个人吃火锅更寂寞的是，",
+            "blackChickenSoupBody": "一个人没有钱吃火锅。"
+        },
+        {
+            "blackChickenSoupID": 9,
+            "blackChickenSoupHead": "有时候你不努力一下，",
+            "blackChickenSoupBody": "不知道什么叫绝望。"
+        },
+        {
+            "blackChickenSoupID": 10,
+            "blackChickenSoupHead": "男女之间一定有纯真的友谊，",
+            "blackChickenSoupBody": "因为,每一个认识我的女生，都说最多只能跟我做朋友。"
+        },
+        {
+            "blackChickenSoupID": 11,
+            "blackChickenSoupHead": "你无法叫醒一个不回你消息的人，",
+            "blackChickenSoupBody": "但是,红包能。"
+        },
+        {
+            "blackChickenSoupID": 12,
+            "blackChickenSoupHead": "不要没完没了的修图。",
+            "blackChickenSoupBody": "你现实中长得丑，我们都知道。"
+        },
+        {
+            "blackChickenSoupID": 13,
+            "blackChickenSoupHead": "最怕你一生碌碌无为，",
+            "blackChickenSoupBody": "还安慰自己平凡可贵。"
+        },
+        {
+            "blackChickenSoupID": 14,
+            "blackChickenSoupHead": "许多人说选择北上广的原因，是发展机会好。",
+            "blackChickenSoupBody": "但他们说的发展，实际上指的就是打工。"
+        },
+        {
+            "blackChickenSoupID": 15,
+            "blackChickenSoupHead": "当你觉得自己又丑又穷，一无是处时，请别绝望。",
+            "blackChickenSoupBody": "至少你的判断还是对的。"
+        },
+        {
+            "blackChickenSoupID": 16,
+            "blackChickenSoupHead": "不要只看到别人表面上的一帆风顺，",
+            "blackChickenSoupBody": "实际上，他们背地里，也是一帆风顺。"
+        },
+        {
+            "blackChickenSoupID": 17,
+            "blackChickenSoupHead": "哪有什么选择恐惧症，",
+            "blackChickenSoupBody": "还不是因为穷。"
+        },
+        {
+            "blackChickenSoupID": 18,
+            "blackChickenSoupHead": "盖茨休学创业成了世界富翁，",
+            "blackChickenSoupBody": "但人家休的是哈佛大学。"
+        },
+        {
+            "blackChickenSoupID": 19,
+            "blackChickenSoupHead": "虽然你单身，",
+            "blackChickenSoupBody": "但是你胖若两人。"
+        },
+        {
+            "blackChickenSoupID": 20,
+            "blackChickenSoupHead": "好女孩只得到了好字，",
+            "blackChickenSoupBody": "而漂亮女孩却得到了所有。"
+        },
+        {
+            "blackChickenSoupID": 21,
+            "blackChickenSoupHead": "你只知道人家化妆比你好看，却不知道，",
+            "blackChickenSoupBody": "她们卸了妆，不仅比你好看，皮肤还吹弹可破。"
+        },
+        {
+            "blackChickenSoupID": 22,
+            "blackChickenSoupHead": "爱笑的女生运气不会太差。",
+            "blackChickenSoupBody": "说实话，如果一个女生运气一直不好，我不知道她怎么笑得出来。"
+        },
+        {
+            "blackChickenSoupID": 23,
+            "blackChickenSoupHead": "像我这种连名牌都不认识几个的人，",
+            "blackChickenSoupBody": "有时候连别人在炫富都感觉不到。"
+        },
+        {
+            "blackChickenSoupID": 24,
+            "blackChickenSoupHead": "喜欢一个人就去表白，",
+            "blackChickenSoupBody": "万一还能成备胎了呢。"
+        },
+        {
+            "blackChickenSoupID": 25,
+            "blackChickenSoupHead": "善良没用，",
+            "blackChickenSoupBody": "你得漂亮，还得有钱。"
+        },
+        {
+            "blackChickenSoupID": 26,
+            "blackChickenSoupHead": "上帝是公平的，给了你丑的外表，",
+            "blackChickenSoupBody": "还会给你低的智商，以免让你显得不协调。"
+        },
+        {
+            "blackChickenSoupID": 27,
+            "blackChickenSoupHead": "为什么总是天妒英才呢？?",
+            "blackChickenSoupBody": "因为没人管笨蛋活多久。"
+        },
+        {
+            "blackChickenSoupID": 28,
+            "blackChickenSoupHead": "长得丑就是病，",
+            "blackChickenSoupBody": "不然整形医院怎么叫医院？"
+        },
+        {
+            "blackChickenSoupID": 29,
+            "blackChickenSoupHead": "学校教学楼厕所放镜子你以为让你整理仪容！？",
+            "blackChickenSoupBody": "你错了，是为了让你知道，人丑就要多读书。"
+        },
+        {
+            "blackChickenSoupID": 30,
+            "blackChickenSoupHead": "一些人常会被骂，说每天像猪一样爱睡懒觉。",
+            "blackChickenSoupBody": "那猪真的是太委屈了，猪都比你早起。"
+        },
+        {
+            "blackChickenSoupID": 31,
+            "blackChickenSoupHead": "人生很多事，终究是会随着时间好起来的。",
+            "blackChickenSoupBody": "像很多人原本只是胖，久了就变好胖。"
+        },
+        {
+            "blackChickenSoupID": 32,
+            "blackChickenSoupHead": "这段日子迷惘又黑暗，",
+            "blackChickenSoupBody": "撑过去了会有下一个黑暗等着你。"
+        },
+        {
+            "blackChickenSoupID": 33,
+            "blackChickenSoupHead": "生活不止眼前的苟且，",
+            "blackChickenSoupBody": "还有前任的喜帖。"
+        },
+        {
+            "blackChickenSoupID": 34,
+            "blackChickenSoupHead": "热恋的你总是听过很多情话，",
+            "blackChickenSoupBody": "可是你听过不是为上床做铺垫的吗？"
+        },
+        {
+            "blackChickenSoupID": 35,
+            "blackChickenSoupHead": "谁说你没有毅力的，?",
+            "blackChickenSoupBody": "单身这事你不就坚持了好几十年吗？"
+        },
+        {
+            "blackChickenSoupID": 36,
+            "blackChickenSoupHead": "女追男隔层纱，除非那男的本来就对你有好感，",
+            "blackChickenSoupBody": "不然隔的基本都是铁丝网，还是带电的那种。"
+        },
+        {
+            "blackChickenSoupID": 37,
+            "blackChickenSoupHead": "撩你不是因为喜欢你，",
+            "blackChickenSoupBody": "而是因为看你的样子就知道你很容易睡。"
+        },
+        {
+            "blackChickenSoupID": 38,
+            "blackChickenSoupHead": "当你失败的时候，身边会有一群关心你的人，",
+            "blackChickenSoupBody": "他们会问你发生什么事，听听你的失败经验，然后心满意足地离开。"
+        },
+        {
+            "blackChickenSoupID": 39,
+            "blackChickenSoupHead": "等你以后老了，走不动了，",
+            "blackChickenSoupBody": "我就每天用轮椅推你到广场上去，让你看着我和别的老头跳舞。"
+        },
+        {
+            "blackChickenSoupID": 40,
+            "blackChickenSoupHead": "有的人是来爱你的，",
+            "blackChickenSoupBody": "有的人就是来给你上课的。"
+        },
+        {
+            "blackChickenSoupID": 41,
+            "blackChickenSoupHead": "如果一个人秒回了你，",
+            "blackChickenSoupBody": "也只能说明这个人在玩手机而已。"
+        },
+        {
+            "blackChickenSoupID": 42,
+            "blackChickenSoupHead": "你以为他是不会表达，",
+            "blackChickenSoupBody": "其实他就是不爱你。"
+        },
+        {
+            "blackChickenSoupID": 43,
+            "blackChickenSoupHead": "以前觉得靠关系的人一定是很无能，",
+            "blackChickenSoupBody": "接触过后发现人家样样比你强。"
+        },
+        {
+            "blackChickenSoupID": 44,
+            "blackChickenSoupHead": "你努力过后才发现，",
+            "blackChickenSoupBody": "智商的鸿沟是无法逾越的。"
+        },
+        {
+            "blackChickenSoupID": 45,
+            "blackChickenSoupHead": "喜欢一个人一定要去告白，",
+            "blackChickenSoupBody": "不被拒绝一下，你还真以为自己是小仙女了。"
+        },
+        {
+            "blackChickenSoupID": 46,
+            "blackChickenSoupHead": "不努力的女生，会有买不完的地摊货，逛不完的菜市场。",
+            "blackChickenSoupBody": "努力的女生，你就没时间逛地摊，因为你只能加班叫外卖、逛网店！"
+        },
+        {
+            "blackChickenSoupID": 47,
+            "blackChickenSoupHead": "从前车马很慢，书信很远，一生只够爱一个人，",
+            "blackChickenSoupBody": "但是能纳很多妾。"
+        },
+        {
+            "blackChickenSoupID": 48,
+            "blackChickenSoupHead": "你才二十多岁，没有遇到喜欢的人很正常，",
+            "blackChickenSoupBody": "往后你会发现，大概是遇不到了。"
+        },
+        {
+            "blackChickenSoupID": 49,
+            "blackChickenSoupHead": "现在的人天天手机不离手，要回你消息早就回了，",
+            "blackChickenSoupBody": "单身没关系，以后单身的日子还长着呢。"
+        }
+    ];
+    var randColor = function () {
+        var r = Math.floor(Math.random() * 128);
+        var g = Math.floor(Math.random() * 128);
+        var b = Math.floor(Math.random() * 128);
+        return 'rgb(' + [r, g, b].join(',') + ')';
+    }
+    var i = Math.floor(Math.random() * 49);
+    var showBowl = function () {
+        //上碗
+        var chickenSoup = chickenSoups[i];
+        var h = Math.floor(Math.random() * 49);
+        while (h === i) {
+            h = Math.floor(Math.random() * 49);
+        }
+        i = h;
+        $("#soupHead").html(chickenSoup.blackChickenSoupHead);
+        $("#soupBody").hide();
+        $("#soupBody").html("<b>" + chickenSoup.blackChickenSoupBody + "</b>");
+        $("#get").prop("value", "上鸡汤！");
+        var bColor = randColor();
+        $("body").css("background-color", bColor);
+        $("body").css("color", bColor);
+        $("#get").css("color", bColor);
+    }
+    var showChickenSoup = function () {
+        //上鸡汤
+        $("#soupBody").show();
+        $("#get").prop("value", "再来一碗！");
+    };
+    $(function () {
+        var flag = 1;
+        showBowl();
+        $("#get").on("click", function () {
+            if (flag === -1) {
+                showBowl();
+            } else {
+                showChickenSoup();
+            }
+            ;
+            flag *= -1;
+        });
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdMiniList": false,
+                "bdPic": "",
+                "bdStyle": "0",
+                "bdSize": "32"
+            }, "share": {}
+        };
+        with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    });
+</script>
+</body>
+</html>
